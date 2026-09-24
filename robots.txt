@@ -1,0 +1,10 @@
+# STAGING. Blocks every crawler so the test subdomain never gets indexed.
+# At launch on johntransfer.ie, replace this whole file with:
+#
+#   User-agent: *
+#   Allow: /
+#
+#   Sitemap: https://johntransfer.ie/sitemap.xml
+
+User-agent: *
+Disallow: /

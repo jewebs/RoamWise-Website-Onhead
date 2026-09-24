@@ -1,0 +1,567 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Self-hosted faces. No external font requests: the page must render fully
+   when opened straight from the filesystem.
+   Files are produced by the asset step and documented in assets/fonts/FONTS.md.
+--------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url("../assets/fonts/archivo-variable-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url("../assets/fonts/archivo-variable-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/inter-variable-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/inter-variable-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+/* ---------------------------------------------------------------------------
+   Tokens. See DESIGN.md for the reasoning behind each value.
+   Committed color strategy: warm off-white carries the surface, amber marks
+   action. Every neutral stays tinted toward hue 250, never pure #fff or #000.
+--------------------------------------------------------------------------- */
+
+@theme {
+  --color-surface: oklch(0.98 0.004 250);
+  --color-raised: oklch(0.995 0.003 250);
+  --color-sunken: oklch(0.95 0.006 250);
+  /* Structural hairlines: dividers, section rules, card outlines. Decorative,
+     so they sit below the 3:1 floor on purpose. */
+  --color-line: oklch(0.88 0.01 250);
+
+  /* Boundaries of interactive controls: bordered buttons, the tab track, and
+     the hover/focus state of every text-entry field. Held at 3:1 or better
+     against every surface it appears on, per WCAG 1.4.11. Never use this for
+     a plain divider. */
+  --color-field: oklch(0.62 0.014 250);
+
+  /* Resting boundary of a text-entry field. Deliberately below the 1.4.11
+     floor (1.76:1 on surface): the fields carry no fill, so a 3:1 outline
+     around twelve of them read as a stack of grey boxes. The mitigations are
+     structural, not cosmetic: every field has a permanently visible label
+     above it, hover and focus escalate the border to `--color-field` at
+     3.44:1, and the focus ring is never suppressed. Buttons keep
+     `--color-field`, because there the border is the whole affordance. */
+  --color-field-soft: oklch(0.8 0.01 250);
+
+  --color-ink: oklch(0.22 0.018 250);
+  --color-muted: oklch(0.44 0.016 250);
+  /* 0.50, not higher: this carries form labels and helper text, which must
+     clear 4.5:1 against raised panels, the worst case (5.90:1 here). */
+  --color-faint: oklch(0.5 0.016 250);
+
+  /* Text that sits on top of photography, where the scrim keeps the backdrop
+     dark regardless of page theme. Never use it on a page surface. */
+  --color-on-image: oklch(0.98 0.005 250);
+
+  /* Two ambers, and the difference matters. `--color-accent` is a fill: it is
+     bright, and only ever carries `--color-accent-ink` on top (9.13:1).
+     `--color-accent-deep` is the text/icon amber, dark enough to clear 4.5:1
+     on every page surface (5.39:1 worst case). Never swap them. */
+  --color-accent: oklch(0.8 0.145 75);
+  --color-accent-hi: oklch(0.74 0.15 72);
+  --color-accent-ink: oklch(0.22 0.05 75);
+  --color-accent-deep: oklch(0.52 0.12 62);
+
+  --color-danger: oklch(0.52 0.17 25);
+  --color-ok: oklch(0.5 0.115 155);
+
+  --font-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --text-display: clamp(2.75rem, 9vw, 7rem);
+  --text-display--line-height: 0.9;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 800;
+
+  --text-h2: clamp(1.75rem, 4vw, 3rem);
+  --text-h2--line-height: 1;
+  --text-h2--letter-spacing: -0.015em;
+  --text-h2--font-weight: 700;
+
+  --text-h3: clamp(1.25rem, 2vw, 1.5rem);
+  --text-h3--line-height: 1.15;
+  --text-h3--font-weight: 700;
+
+  --radius-panel: 1.5rem;
+  /* 1rem, not 0.75rem. On a 3rem control the smaller radius read as a box
+     with the corners filed off; this one reads as a deliberate shape and
+     lands halfway between the 1.5rem panels and the pill buttons. */
+  --radius-field: 1rem;
+  /* Panel radius minus the 0.5rem inset of the quote bar. An inner corner
+     drawn at the outer radius reads as a mistake; this one stays concentric. */
+  --radius-inner: 1rem;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --spacing-gutter: 1.25rem;
+  /* One height for every operable control, so a select, a date input and a
+     button on the same row line up without per-element nudging. */
+  --spacing-control: 3rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Sticky nav clearance so anchor targets are not hidden underneath it. */
+    scroll-padding-top: 6.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    /* Room for the fixed mobile shortcut bar. */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Amber ring, never removed. The deep amber is the one that holds 3:1
+     against the light surfaces, so the ring uses it rather than the fill. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-deep);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-stretch: 82%;
+  }
+
+  /* Prices, durations and times must not jitter between values. */
+  .tnum,
+  time,
+  data {
+    font-variant-numeric: tabular-nums;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Components
+--------------------------------------------------------------------------- */
+
+@layer components {
+  /* Text-entry field: input, select, textarea in the booking form.
+
+     No fill. The form column already sits on `--color-raised`, and a sunken
+     grey rectangle inside it made twelve fields read as twelve grey slabs
+     rather than as one form. With the fill gone the border is the only
+     boundary, so the border is what escalates: light grey at rest, the full
+     3:1 `--color-field` under the pointer or the caret, danger red when the
+     field has failed. The focus ring comes from the global :focus-visible
+     rule and is never suppressed. */
+  .field {
+    width: 100%;
+    border: 1px solid var(--color-field-soft);
+    border-radius: var(--radius-field);
+    background-color: transparent;
+    padding: 0.75rem 0.875rem;
+    color: var(--color-ink);
+    line-height: 1.5;
+    transition: border-color 150ms var(--ease-out-expo);
+  }
+
+  .field:hover,
+  .field:focus {
+    border-color: var(--color-field);
+  }
+
+  /* Beats `.field:hover`, which would otherwise outrank a bare attribute
+     selector and paint a failed field grey the moment the pointer touched it. */
+  .field[aria-invalid="true"],
+  .field[aria-invalid="true"]:hover,
+  .field[aria-invalid="true"]:focus {
+    border-color: var(--color-danger);
+  }
+
+  /* A select drawn with `appearance: none` and no chevron is a text field as
+     far as the reader is concerned. The right padding clears the chevron the
+     markup positions over it. */
+  .field-select {
+    appearance: none;
+    padding-right: 2.5rem;
+  }
+
+  .field-textarea {
+    resize: vertical;
+  }
+
+  /* Clears the picker button that sits inside the right edge of the date and
+     time fields, so a long value never runs underneath it. */
+  .field-with-button {
+    padding-right: 3rem;
+  }
+
+  .field::placeholder {
+    color: var(--color-faint);
+  }
+
+  /* Calendar popover.
+
+     Drawn here rather than handed to the browser. A native picker opened with
+     showPicker() renders in the operating system's locale, which put a
+     Portuguese month name on an English-only page, and its dismissal is
+     browser chrome nothing on the page can reach or test. This one is DOM: it
+     speaks the page's language, uses the page's tokens, and every open, close
+     and keypress can be driven in a test.
+
+     It floats, so its boundary is `--color-field` rather than a hairline, and
+     it carries no shadow: the page has none. */
+  .calendar {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    z-index: 30;
+    width: 20rem;
+    max-width: calc(100vw - 2.5rem);
+    border: 1px solid var(--color-field);
+    border-radius: var(--radius-field);
+    background-color: var(--color-raised);
+    padding: 0.75rem;
+  }
+
+  .calendar[data-drop-up] {
+    top: auto;
+    bottom: calc(100% + 0.5rem);
+  }
+
+  .calendar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .calendar-title {
+    font-family: var(--font-display);
+    font-stretch: 82%;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9375rem;
+    letter-spacing: -0.01em;
+  }
+
+  .calendar-nav {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    color: var(--color-muted);
+    transition: background-color 150ms var(--ease-out-expo), color 150ms var(--ease-out-expo);
+  }
+
+  .calendar-nav:hover:not(:disabled) {
+    background-color: var(--color-sunken);
+    color: var(--color-ink);
+  }
+
+  .calendar-nav:disabled {
+    color: var(--color-line);
+    cursor: not-allowed;
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.125rem;
+  }
+
+  .calendar-weekday {
+    padding-bottom: 0.25rem;
+    color: var(--color-faint);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .calendar-day {
+    display: grid;
+    place-items: center;
+    min-height: 2.5rem;
+    border-radius: 0.625rem;
+    color: var(--color-ink);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    transition: background-color 150ms var(--ease-out-expo), color 150ms var(--ease-out-expo);
+  }
+
+  .calendar-day:hover:not(:disabled) {
+    background-color: var(--color-sunken);
+  }
+
+  .calendar-day:disabled {
+    color: var(--color-line);
+    cursor: not-allowed;
+  }
+
+  /* Today, when it is not the chosen day: a ring rather than a fill, so it
+     never competes with the selection. */
+  .calendar-day[data-today]:not([aria-current="date"]) {
+    box-shadow: inset 0 0 0 1px var(--color-field);
+  }
+
+  .calendar-day[aria-current="date"] {
+    background-color: var(--color-accent);
+    color: var(--color-accent-ink);
+    font-weight: 600;
+  }
+
+  /* Nav chrome, two states.
+
+     The default is the pill: hairline, sunken fill, blur. That is also exactly
+     what a scriptless page gets, because the links have to stay readable over
+     the light surface whatever happens.
+
+     At the top of a scripted page the bar drops all of it and floats bare on
+     the hero photograph. A floating pill needs something to float over, and at
+     scroll zero it was floating over a strip of surface colour above the photo,
+     which read as a grey bar with a box drawn on it. main.js adds
+     `data-scrolled` past 16px and the chrome fades back in. */
+  .nav-shell {
+    border: 1px solid color-mix(in oklab, var(--color-line) 70%, transparent);
+    background-color: color-mix(in oklab, var(--color-sunken) 90%, transparent);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+
+  .nav-shell,
+  .nav-ink,
+  .nav-dot,
+  .nav-link,
+  .nav-outline {
+    transition:
+      color 300ms var(--ease-out-expo),
+      background-color 300ms var(--ease-out-expo),
+      border-color 300ms var(--ease-out-expo);
+  }
+
+  .nav-ink {
+    color: var(--color-ink);
+  }
+
+  .nav-dot {
+    color: var(--color-accent-deep);
+  }
+
+  .nav-link {
+    color: var(--color-muted);
+  }
+
+  .nav-link:hover {
+    color: var(--color-ink);
+    background-color: var(--color-raised);
+  }
+
+  .nav-outline {
+    border-color: var(--color-field);
+    color: var(--color-ink);
+  }
+
+  .nav-outline:hover {
+    border-color: var(--color-muted);
+  }
+
+  /* Bare state. Scoped to `.js` so a page whose script never runs keeps the
+     readable pill rather than white links on a white surface. */
+  .js #site-header:not([data-scrolled]) {
+    .nav-shell {
+      border-color: transparent;
+      background-color: transparent;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    /* Over photography, page tokens do not apply: the scrim keeps this area
+       dark, so text is `--color-on-image` and the accent is the bright fill
+       amber, never the deep text amber. */
+    .nav-ink,
+    .nav-link:hover {
+      color: var(--color-on-image);
+    }
+
+    .nav-dot {
+      color: var(--color-accent);
+    }
+
+    .nav-link {
+      color: color-mix(in oklab, var(--color-on-image) 80%, transparent);
+    }
+
+    .nav-link:hover {
+      background-color: color-mix(in oklab, var(--color-on-image) 12%, transparent);
+    }
+
+    .nav-outline {
+      border-color: color-mix(in oklab, var(--color-on-image) 55%, transparent);
+      color: var(--color-on-image);
+    }
+
+    .nav-outline:hover {
+      border-color: var(--color-on-image);
+      background-color: color-mix(in oklab, var(--color-on-image) 10%, transparent);
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities
+--------------------------------------------------------------------------- */
+
+@utility label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@utility prose-measure {
+  max-width: 68ch;
+}
+
+/* The display voice on elements that are not headings: route titles, nav
+   shortcuts, list heads. The `h1, h2, h3` base rule only reaches real heading
+   tags, so a <p> carrying `font-display` used to render at normal width and
+   weight while the <h2> beside it rendered condensed and bold. Same voice,
+   whatever the tag. */
+@utility display-head {
+  font-family: var(--font-display);
+  font-stretch: 82%;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* A control that fills its segment of the quote bar: no border, no fill of its
+   own, the segment around it carries both. The focus ring still comes from the
+   global :focus-visible rule, so it is never lost. */
+@utility bare-control {
+  width: 100%;
+  min-width: 0;
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Reveal on scroll. `.is-in` is added once per element by main.js.
+
+   The hidden starting state is scoped to `.js`, which an inline script in
+   <head> sets before first paint. If that script never runs, or main.js
+   fails to load, or the observer never fires, every section is simply
+   visible. Content must never depend on JavaScript to become readable. */
+@layer utilities {
+  /* An unchosen select still paints its prompt option. Hold it at helper-text
+     colour and weight so it reads as a question, not as an answer already
+     given. Real selections stay at full ink. */
+  select:has(option[value=""]:checked) {
+    color: var(--color-faint);
+    font-weight: 400;
+  }
+
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition:
+      opacity 400ms var(--ease-out-expo),
+      transform 400ms var(--ease-out-expo);
+  }
+
+  /* Same specificity as the rule above, declared later, so it wins. */
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}

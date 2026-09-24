@@ -1,0 +1,15 @@
+{
+  "name": "john-transfer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "John Transfer — private driver and tours in Ireland. Static landing page.",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./dist/styles.css --minify",
+    "dev": "tailwindcss -i ./src/input.css -o ./dist/styles.css --watch",
+    "serve": "npx --yes serve@14 ."
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "tailwindcss": "^4.1.0"
+  }
+}
