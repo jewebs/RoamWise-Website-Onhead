@@ -93,14 +93,15 @@
      dark regardless of page theme. Never use it on a page surface. */
   --color-on-image: oklch(0.98 0.005 250);
 
-  /* Two ambers, and the difference matters. `--color-accent` is a fill: it is
-     bright, and only ever carries `--color-accent-ink` on top (9.13:1).
-     `--color-accent-deep` is the text/icon amber, dark enough to clear 4.5:1
-     on every page surface (5.39:1 worst case). Never swap them. */
-  --color-accent: oklch(0.8 0.145 75);
-  --color-accent-hi: oklch(0.74 0.15 72);
-  --color-accent-ink: oklch(0.22 0.05 75);
-  --color-accent-deep: oklch(0.52 0.12 62);
+  /* Brand Green Palette:
+     --color-accent: Verde claro (#92ff60) - primary fill (CTAs, badges, active tabs, highlight dots)
+     --color-accent-hi: Verde médio (#276120) - hover state for fills
+     --color-accent-ink: Verde escuro (#113b29) - high contrast text on light green fills
+     --color-accent-deep: Verde escuro (#113b29) - text, icons, focus rings and borders */
+  --color-accent: #92ff60;
+  --color-accent-hi: #276120;
+  --color-accent-ink: #113b29;
+  --color-accent-deep: #113b29;
 
   --color-danger: oklch(0.52 0.17 25);
   --color-ok: oklch(0.5 0.115 155);
@@ -173,6 +174,26 @@
   ::selection {
     background-color: var(--color-accent);
     color: var(--color-accent-ink);
+  }
+
+  /* Interactive elements pointer affordance */
+  a,
+  button,
+  [role="button"],
+  [role="tab"],
+  [data-tour-filter],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  summary,
+  select {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [disabled],
+  [aria-disabled="true"] {
+    cursor: not-allowed;
   }
 
   h1,
@@ -520,13 +541,13 @@
   }
 
   .scroll-top-btn:hover .scroll-top-text {
-    color: var(--color-accent-deep, #d97706);
+    color: var(--color-accent-deep, #113b29);
   }
 
   .scroll-top-progress-track {
     width: 2px;
     height: 38px;
-    background-color: var(--color-line, #e2e8f0);
+    background-color: var(--color-accent-deep, #113b29);
     border-radius: 9999px;
     overflow: hidden;
     position: relative;
@@ -535,13 +556,13 @@
   .scroll-top-progress-fill {
     width: 100%;
     height: 0%;
-    background-color: var(--color-accent, #f59e0b);
+    background-color: var(--color-accent, #92ff60);
     border-radius: 9999px;
     transition: height 0.1s ease-out, background-color 0.2s ease;
   }
 
   .scroll-top-btn:hover .scroll-top-progress-fill {
-    background-color: var(--color-accent-deep, #d97706);
+    background-color: var(--color-accent, #92ff60);
   }
 
   @media (max-width: 640px) {
@@ -612,6 +633,7 @@
   .tours-tabs-wrapper button {
     flex-shrink: 0 !important;
     white-space: nowrap !important;
+    cursor: pointer !important;
   }
 
   /* Animated swipe hand gesture for mobile tabs */
@@ -631,7 +653,7 @@
     align-items: center !important;
     justify-content: center !important;
     flex-shrink: 0 !important;
-    color: var(--color-accent-deep, #d97706) !important;
+    color: var(--color-accent-deep, #113b29) !important;
     animation: swipeHandMotion 1.4s ease-in-out infinite !important;
     cursor: pointer !important;
     transition: opacity 0.3s ease !important;
@@ -749,9 +771,9 @@
   }
 
   .tour-arrow-btn:hover:not(:disabled) {
-    background-color: var(--color-accent, #f59e0b) !important;
-    color: var(--color-accent-ink, #000000) !important;
-    border-color: var(--color-accent-deep, #d97706) !important;
+    background-color: var(--color-accent, #92ff60) !important;
+    color: var(--color-accent-ink, #113b29) !important;
+    border-color: var(--color-accent-deep, #113b29) !important;
     transform: scale(1.05) !important;
   }
 
@@ -781,8 +803,8 @@
     }
 
     .tour-arrow-btn:hover:not(:disabled) {
-      background-color: var(--color-accent, #f59e0b) !important;
-      color: var(--color-accent-ink, #000000) !important;
+      background-color: var(--color-accent, #92ff60) !important;
+      color: var(--color-accent-ink, #113b29) !important;
       border-color: transparent !important;
       transform: translateY(-50%) scale(1.1) !important;
     }
@@ -933,15 +955,48 @@ h1, h2, h3, h4, h5, h6, .text-h1, .text-h2, .text-h3, p, .label, .prose-measure 
   text-wrap: balance;
 }
 
-/* Elementor-style Sticky Column for Transfers Section (Desktop & Laptop only) */
 #transfers,
 #transfers .max-w-7xl,
-#transfers .grid {
+#transfers .grid,
+#book,
+#book .max-w-7xl,
+#book .reveal,
+#book .grid,
+#book .grid > div {
   overflow: visible !important;
 }
 
+/* Transfers Section: 50%/50% column image frame ensuring any future image fits with object-fit: cover without expanding */
+.transfer-image-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--color-sunken);
+}
+
+.transfer-image-frame img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block;
+}
+
+.booking-sticky-track {
+  position: relative;
+  width: 100%;
+  flex: 1 1 0%;
+}
+
 @media (min-width: 1024px) {
-  .transfers-sticky-col {
+  .transfers-sticky-col,
+  .booking-sticky-col {
     position: -webkit-sticky !important;
     position: sticky !important;
     top: 116px !important;
@@ -953,7 +1008,8 @@ h1, h2, h3, h4, h5, h6, .text-h1, .text-h2, .text-h3, p, .label, .prose-measure 
 }
 
 @media (max-width: 1023px) {
-  .transfers-sticky-col {
+  .transfers-sticky-col,
+  .booking-sticky-col {
     position: static !important;
     top: auto !important;
     align-self: auto !important;
@@ -1000,13 +1056,13 @@ h1, h2, h3, h4, h5, h6, .text-h1, .text-h2, .text-h3, p, .label, .prose-measure 
 }
 
 .scroll-top-btn:hover .scroll-top-text {
-  color: var(--color-accent-deep, #d97706);
+  color: var(--color-accent-deep, #113b29);
 }
 
 .scroll-top-progress-track {
   width: 2px;
   height: 38px;
-  background-color: var(--color-line, #e2e8f0);
+  background-color: var(--color-accent-deep, #113b29);
   border-radius: 9999px;
   overflow: hidden;
   position: relative;
@@ -1015,13 +1071,18 @@ h1, h2, h3, h4, h5, h6, .text-h1, .text-h2, .text-h3, p, .label, .prose-measure 
 .scroll-top-progress-fill {
   width: 100%;
   height: 0%;
-  background-color: var(--color-accent, #f59e0b);
+  background-color: var(--color-accent, #92ff60);
   border-radius: 9999px;
   transition: height 0.1s ease-out, background-color 0.2s ease;
 }
 
 .scroll-top-btn:hover .scroll-top-progress-fill {
-  background-color: var(--color-accent-deep, #d97706);
+  background-color: var(--color-accent, #92ff60);
+}
+
+/* Ensure buttons with dark-green hover state switch to white text for accessibility and clarity */
+.hover\:bg-accent-hi:hover {
+  color: #ffffff !important;
 }
 
 @media (max-width: 640px) {

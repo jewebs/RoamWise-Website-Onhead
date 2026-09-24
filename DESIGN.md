@@ -24,10 +24,10 @@ That scene sets the job: reassurance rather than browsing, read on a phone, in t
 | `--color-muted` | `oklch(0.44 0.016 250)` | secondary text |
 | `--color-faint` | `oklch(0.50 0.016 250)` | form labels, helper text, metadata |
 | `--color-on-image` | `oklch(0.98 0.005 250)` | text sitting on a scrimmed photograph |
-| `--color-accent` | `oklch(0.80 0.145 75)` | amber fills: CTAs, active tab, logo mark |
-| `--color-accent-hi` | `oklch(0.74 0.150 72)` | fill hover |
-| `--color-accent-ink` | `oklch(0.22 0.050 75)` | text on amber |
-| `--color-accent-deep` | `oklch(0.52 0.120 62)` | amber as text: prices, eyebrows, focus ring |
+| `--color-accent` | `#92ff60` | Verde claro fills: CTAs, active tab, logo mark |
+| `--color-accent-hi` | `#276120` | Verde médio: fill hover |
+| `--color-accent-ink` | `#113b29` | Verde escuro: text on light green fills |
+| `--color-accent-deep` | `#113b29` | Verde escuro: green as text, prices, eyebrows, focus ring |
 | `--color-danger` | `oklch(0.52 0.170 25)` | validation errors |
 | `--color-ok` | `oklch(0.50 0.115 155)` | success state |
 
