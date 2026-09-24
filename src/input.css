@@ -440,6 +440,362 @@
     border-color: var(--color-muted);
   }
 
+  .site-logo {
+    height: 24px;
+    width: auto;
+    display: block;
+    transition: height 0.25s ease-out;
+  }
+
+  @media (min-width: 1024px) {
+    #site-header:not([data-scrolled]) .site-logo {
+      height: 38px;
+    }
+    #site-header[data-scrolled] .site-logo {
+      height: 24px;
+    }
+  }
+
+  footer .site-logo {
+    height: 40px !important;
+  }
+
+  /* Global Typography & Root - Text Wrap Balance & Overflow */
+  html,
+  body {
+    overflow-x: hidden;
+    text-wrap: balance;
+  }
+
+  h1, h2, h3, h4, h5, h6, .text-h1, .text-h2, .text-h3, p, .label, .prose-measure {
+    text-wrap: balance;
+  }
+
+  /* Sticky Column for Transfers Section (Desktop & Laptop only) */
+  @media (min-width: 1024px) {
+    .transfers-sticky-col {
+      position: sticky !important;
+      top: 6.5rem !important;
+      align-self: start !important;
+    }
+  }
+
+  /* Scroll to Top Button with Progress Bar (Discreet, Brand Colors) */
+  .scroll-top-btn {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 2.5rem;
+    z-index: 45;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    padding: 0.5rem 0.25rem;
+  }
+
+  .scroll-top-btn.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .scroll-top-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: var(--font-display, inherit);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-ink, #0f172a);
+    transition: color 0.2s ease;
+    user-select: none;
+  }
+
+  .scroll-top-btn:hover .scroll-top-text {
+    color: var(--color-accent-deep, #d97706);
+  }
+
+  .scroll-top-progress-track {
+    width: 2px;
+    height: 38px;
+    background-color: var(--color-line, #e2e8f0);
+    border-radius: 9999px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .scroll-top-progress-fill {
+    width: 100%;
+    height: 0%;
+    background-color: var(--color-accent, #f59e0b);
+    border-radius: 9999px;
+    transition: height 0.1s ease-out, background-color 0.2s ease;
+  }
+
+  .scroll-top-btn:hover .scroll-top-progress-fill {
+    background-color: var(--color-accent-deep, #d97706);
+  }
+
+  @media (max-width: 640px) {
+    .scroll-top-btn {
+      right: 0.75rem;
+      bottom: 4.75rem;
+    }
+    .scroll-top-progress-track {
+      height: 30px;
+    }
+  }
+
+  /* Tours 2-column flexbox layout */
+  .tours-flex-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    width: 100% !important;
+  }
+
+  /* Mobile: Text on top */
+  .tours-text-col {
+    order: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  /* Mobile: Tabs + Carousel on bottom */
+  .tours-carousel-col {
+    order: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* City Filter Tabs (Scrollable area after texts) */
+  .tours-tabs-scroll-area {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    max-width: 100% !important;
+    margin-top: 1.5rem !important;
+  }
+
+  .tours-tabs-wrapper {
+    align-self: flex-start !important;
+    display: inline-flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    white-space: nowrap !important;
+    border-radius: 9999px !important;
+    border: 1px solid var(--color-line, #e2e8f0) !important;
+    background-color: var(--color-raised, #ffffff) !important;
+    padding: 0.375rem !important;
+    max-width: 100% !important;
+  }
+
+  .tours-tabs-wrapper::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .tours-tabs-wrapper button {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Animated swipe hand gesture for mobile tabs */
+  @keyframes swipeHandMotion {
+    0%, 100% {
+      transform: translateX(0);
+      opacity: 0.95;
+    }
+    50% {
+      transform: translateX(7px);
+      opacity: 0.45;
+    }
+  }
+
+  .tours-swipe-hint {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    color: var(--color-accent-deep, #d97706) !important;
+    animation: swipeHandMotion 1.4s ease-in-out infinite !important;
+    cursor: pointer !important;
+    transition: opacity 0.3s ease !important;
+  }
+
+  @media (min-width: 640px) {
+    .tours-swipe-hint {
+      display: none !important;
+    }
+  }
+
+  /* Desktop and Tablet: Flexbox with 2 columns */
+  @media (min-width: 768px) {
+    .tours-flex-wrapper {
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      flex-wrap: nowrap !important;
+      gap: 3rem !important;
+    }
+
+    /* Left column: Carousel */
+    .tours-carousel-col {
+      order: 1 !important;
+      flex: 1 1 0% !important;
+      width: auto !important;
+      min-width: 0 !important;
+      max-width: 50% !important;
+    }
+
+    /* Right column: Text */
+    .tours-text-col {
+      order: 2 !important;
+      flex: 1 1 0% !important;
+      width: auto !important;
+      min-width: 0 !important;
+      max-width: 50% !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .tours-flex-wrapper {
+      gap: 4.5rem !important;
+    }
+  }
+
+  /* Carousel structure */
+  .tour-carousel-box {
+    position: relative !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .tour-carousel {
+    display: flex !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    border-radius: 1.5rem !important;
+  }
+
+  .tour-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .tour-card {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: 540px !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+  }
+
+  @media (max-width: 640px) {
+    .tour-card {
+      height: 480px !important;
+    }
+  }
+
+  /* Carousel Navigation Arrows */
+  .tour-nav-arrows {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .tour-arrow-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    border-radius: 9999px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    border: 1px solid var(--color-line, #e2e8f0) !important;
+    background-color: var(--color-raised, #ffffff) !important;
+    color: var(--color-ink, #0f172a) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  .tour-arrow-btn:hover:not(:disabled) {
+    background-color: var(--color-accent, #f59e0b) !important;
+    color: var(--color-accent-ink, #000000) !important;
+    border-color: var(--color-accent-deep, #d97706) !important;
+    transform: scale(1.05) !important;
+  }
+
+  .tour-arrow-btn:disabled {
+    opacity: 0.3 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+  }
+
+  /* Desktop and tablet: lateral side floating arrows */
+  @media (min-width: 768px) {
+    .tour-nav-arrows {
+      margin-top: 0 !important;
+    }
+
+    .tour-arrow-btn {
+      position: absolute !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      z-index: 25 !important;
+      background-color: rgba(15, 23, 42, 0.75) !important;
+      color: #ffffff !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    .tour-arrow-btn:hover:not(:disabled) {
+      background-color: var(--color-accent, #f59e0b) !important;
+      color: var(--color-accent-ink, #000000) !important;
+      border-color: transparent !important;
+      transform: translateY(-50%) scale(1.1) !important;
+    }
+
+    .tour-arrow-prev {
+      left: 0.75rem !important;
+    }
+
+    .tour-arrow-next {
+      right: 0.75rem !important;
+    }
+  }
+
   /* Bare state. Scoped to `.js` so a page whose script never runs keeps the
      readable pill rather than white links on a white surface. */
   .js #site-header:not([data-scrolled]) {
@@ -563,5 +919,114 @@
       transform: none;
       transition: none;
     }
+  }
+}
+
+/* Global Typography & Root - Text Wrap Balance & Overflow */
+html,
+body {
+  overflow-x: clip;
+  text-wrap: balance;
+}
+
+h1, h2, h3, h4, h5, h6, .text-h1, .text-h2, .text-h3, p, .label, .prose-measure {
+  text-wrap: balance;
+}
+
+/* Elementor-style Sticky Column for Transfers Section (Desktop & Laptop only) */
+#transfers,
+#transfers .max-w-7xl,
+#transfers .grid {
+  overflow: visible !important;
+}
+
+@media (min-width: 1024px) {
+  .transfers-sticky-col {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 116px !important;
+    align-self: start !important;
+    height: -moz-fit-content !important;
+    height: fit-content !important;
+    overflow: visible !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .transfers-sticky-col {
+    position: static !important;
+    top: auto !important;
+    align-self: auto !important;
+  }
+}
+
+/* Scroll to Top Button with Progress Bar (Discreet, Brand Colors) */
+.scroll-top-btn {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 2.5rem;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  padding: 0.5rem 0.25rem;
+}
+
+.scroll-top-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-display, inherit);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink, #0f172a);
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.scroll-top-btn:hover .scroll-top-text {
+  color: var(--color-accent-deep, #d97706);
+}
+
+.scroll-top-progress-track {
+  width: 2px;
+  height: 38px;
+  background-color: var(--color-line, #e2e8f0);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-top-progress-fill {
+  width: 100%;
+  height: 0%;
+  background-color: var(--color-accent, #f59e0b);
+  border-radius: 9999px;
+  transition: height 0.1s ease-out, background-color 0.2s ease;
+}
+
+.scroll-top-btn:hover .scroll-top-progress-fill {
+  background-color: var(--color-accent-deep, #d97706);
+}
+
+@media (max-width: 640px) {
+  .scroll-top-btn {
+    right: 0.75rem;
+    bottom: 4.75rem;
   }
 }

@@ -487,12 +487,25 @@
   });
 
   /* -------------------------------------------------------------------------
-     Tour city filters. Only one city's bento layout is shown at a time, so
-     similarly named routes never read as duplicate products. Buttons remain
-     ordinary toggle controls rather than tabs: they filter one shared grid.
+     Tour city filters and carousel navigation.
+     Only one city's tours are shown at a time. The carousel scrolls 1 by 1.
   ------------------------------------------------------------------------- */
   const tourFilters = Array.from(document.querySelectorAll("[data-tour-filter]"));
   const tourCards = Array.from(document.querySelectorAll("[data-tour-city]"));
+  const tourGrid = document.getElementById("tour-grid");
+  const tourPrev = document.getElementById("tour-prev");
+  const tourNext = document.getElementById("tour-next");
+
+  function getTourScrollStep() {
+    return tourGrid ? tourGrid.clientWidth : 400;
+  }
+
+  function updateTourNav() {
+    if (!tourGrid || !tourPrev || !tourNext) return;
+    const maxScroll = tourGrid.scrollWidth - tourGrid.clientWidth - 10;
+    tourPrev.disabled = tourGrid.scrollLeft <= 5;
+    tourNext.disabled = tourGrid.scrollLeft >= maxScroll;
+  }
 
   function selectTourCity(city) {
     tourFilters.forEach((button) => {
@@ -501,11 +514,38 @@
     tourCards.forEach((card) => {
       card.hidden = card.dataset.tourCity !== city;
     });
+    if (tourGrid) {
+      tourGrid.scrollTo({ left: 0, behavior: "smooth" });
+      setTimeout(updateTourNav, 150);
+    }
   }
+
+  tourPrev?.addEventListener("click", () => {
+    if (tourGrid) {
+      tourGrid.scrollBy({ left: -getTourScrollStep(), behavior: "smooth" });
+      setTimeout(updateTourNav, 300);
+    }
+  });
+
+  tourNext?.addEventListener("click", () => {
+    if (tourGrid) {
+      tourGrid.scrollBy({ left: getTourScrollStep(), behavior: "smooth" });
+      setTimeout(updateTourNav, 300);
+    }
+  });
+
+  tourGrid?.addEventListener("scroll", updateTourNav, { passive: true });
+  window.addEventListener("resize", updateTourNav, { passive: true });
 
   tourFilters.forEach((button) => {
     button.addEventListener("click", () => selectTourCity(button.dataset.tourFilter));
   });
+
+  const toursTabsWrapper = document.querySelector(".tours-tabs-wrapper");
+  const toursSwipeHint = document.querySelector(".tours-swipe-hint");
+  toursTabsWrapper?.addEventListener("scroll", () => {
+    if (toursSwipeHint) toursSwipeHint.style.opacity = "0.2";
+  }, { passive: true });
 
   if (tourFilters.length && tourCards.length) selectTourCity("dublin");
 
@@ -878,4 +918,36 @@
        first callback is late or the page was restored mid-scroll. */
     sweep();
   }
+
+  /* -------------------------------------------------------------------------
+     Scroll to Top button with real-time progress bar
+  ------------------------------------------------------------------------- */
+  const scrollTopBtn = document.getElementById("scroll-to-top");
+  const scrollTopProgress = document.getElementById("scroll-top-progress-bar");
+
+  function updateScrollProgress() {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollY / docHeight) * 100)) : 0;
+
+    if (scrollTopProgress) {
+      scrollTopProgress.style.height = `${progress}%`;
+    }
+
+    if (scrollTopBtn) {
+      if (scrollY > 280) {
+        scrollTopBtn.classList.add("is-visible");
+      } else {
+        scrollTopBtn.classList.remove("is-visible");
+      }
+    }
+  }
+
+  scrollTopBtn?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  window.addEventListener("scroll", updateScrollProgress, { passive: true });
+  updateScrollProgress();
 })();
+
