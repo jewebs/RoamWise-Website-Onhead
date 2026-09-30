@@ -24,6 +24,7 @@
   <link rel="preload" as="image" href="assets/img/Roamwise_LogoBranco_Horizontal@2x.png" />
   <link rel="preload" as="image" href="assets/img/Roamwise_Logo_Horizontal@2x.png" />
   <link rel="stylesheet" href="dist/styles.css" />
+  <link rel="stylesheet" href="assets/vendor/glightbox/glightbox.min.css" />
 
 
   <!-- Marks the document as scripted before first paint. Reveal animations
@@ -452,7 +453,7 @@
             <!-- Carousel container with relative positioning for lateral arrows -->
             <div class="tour-carousel-box">
               <div id="tour-grid" class="tour-carousel">
-                <!-- Cliffs of Moher, the anchor tour -->
+                <!-- 1. Cliffs of Moher & Galway (Dublin) -->
                 <article data-tour-city="dublin"
                   class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
                   <img src="assets/img/tour-cliffs-800.webp"
@@ -475,14 +476,14 @@
                       The full west coast run. Burren limestone, the cliffs themselves, then Galway city
                       before the drive back.
                     </p>
-                    <button type="button" data-book="Dublin • Private Tour: Cliffs of Moher &amp; Galway."
-                      class="mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
+                    <button type="button" data-tour-popup="components/popups/popup-dublin-cliffs-moher.html"
+                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
                       Book this tour
                     </button>
                   </div>
                 </article>
 
-                <!-- Belfast, Titanic & Giants -->
+                <!-- 2. Belfast, Titanic & Giants (Dublin) -->
                 <article data-tour-city="dublin"
                   class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
                   <img src="assets/img/tour-titanic-800.webp"
@@ -503,14 +504,14 @@
                     <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
                       North across the border for the Titanic Quarter and the Giant's Causeway.
                     </p>
-                    <button type="button" data-book="Dublin • Private Tour: Belfast, Titanic &amp; Giants."
-                      class="mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
+                    <button type="button" data-tour-popup="components/popups/popup-dublin-belfast-titanic.html"
+                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
                       Book this tour
                     </button>
                   </div>
                 </article>
 
-                <!-- Wicklow -->
+                <!-- 3. Wicklow & Glendalough Private Tour (Dublin) -->
                 <article data-tour-city="dublin"
                   class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
                   <img src="assets/img/tour-wicklow-800.webp"
@@ -528,19 +529,19 @@
                       <span
                         class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">7h</span>
                     </p>
-                    <h3 class="mt-2 text-h3">Wicklow &amp; Glendalough Private Day Tour</h3>
+                    <h3 class="mt-2 text-h3">Wicklow &amp; Glendalough Private Tour</h3>
                     <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
                       Mountain roads, the monastic city and the upper lake. The shortest way to see the
                       countryside properly.
                     </p>
-                    <button type="button" data-book="Dublin • Wicklow &amp; Glendalough Private Day Tour."
-                      class="mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
+                    <button type="button" data-tour-popup="components/popups/popup-dublin-wicklow-glendalough.html"
+                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
                       Book this tour
                     </button>
                   </div>
                 </article>
 
-                <!-- Chauffeur -->
+                <!-- 4. Dublin: Private Chauffeur Tour (Dublin) -->
                 <article data-tour-city="dublin"
                   class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
                   <img src="assets/img/tour-chauffeur-800.webp"
@@ -563,14 +564,62 @@
                     <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
                       Half a day with the car and John at your disposal. You pick the stops as you go.
                     </p>
-                    <button type="button" data-book="Dublin • Dublin: Private Chauffeur Tour."
-                      class="mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
+                    <button type="button" data-tour-popup="components/popups/popup-dublin-chauffeur.html"
+                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
                       Book this tour
                     </button>
                   </div>
                 </article>
 
-                <!-- Titanic Trail Walking Tour (Cork) -->
+                <!-- 5. Giant's Causeway – Private Guide Bus Tour (Belfast) -->
+                <article data-tour-city="belfast"
+                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
+                  <img src="assets/img/tour-titanic-800.webp" alt="Basalt columns on the Northern Irish coast"
+                    width="800" height="533" loading="lazy" decoding="async"
+                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
+                  <div class="absolute inset-0 -z-10"
+                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
+                    aria-hidden="true"></div>
+                  <div class="p-6 text-on-image sm:p-8">
+                    <p class="label inline-flex items-center gap-2 text-on-image/70">Belfast <span
+                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">8h</span>
+                    </p>
+                    <h3 class="mt-2 text-h3">Giant's Causeway – Private Guide Bus Tour</h3>
+                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
+                      Experience Northern Ireland's famous coastline and the legendary basalt columns.
+                    </p>
+                    <button type="button" data-tour-popup="components/popups/popup-belfast-giants-causeway.html"
+                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">
+                      Book this tour
+                    </button>
+                  </div>
+                </article>
+
+                <!-- 6. Belfast City – Private Chauffeur Day Tour (Belfast) -->
+                <article data-tour-city="belfast"
+                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
+                  <img src="assets/img/tour-chauffeur-800.webp" alt="Private chauffeur car on an Irish road" width="800"
+                    height="533" loading="lazy" decoding="async"
+                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
+                  <div class="absolute inset-0 -z-10"
+                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
+                    aria-hidden="true"></div>
+                  <div class="p-6 text-on-image sm:p-8">
+                    <p class="label inline-flex items-center gap-2 text-on-image/70">Belfast <span
+                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">7h</span>
+                    </p>
+                    <h3 class="mt-2 text-h3">Belfast City – Private Chauffeur Day Tour</h3>
+                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
+                      A private day with a knowledgeable local driver exploring Belfast's historic quarters.
+                    </p>
+                    <button type="button" data-tour-popup="components/popups/popup-belfast-city-chauffeur.html"
+                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">
+                      Book this tour
+                    </button>
+                  </div>
+                </article>
+
+                <!-- 7. Titanic Trail Walking Tour (Cork) -->
                 <article data-tour-city="cork"
                   class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
                   <img src="assets/img/tour-photography-800.webp"
@@ -593,128 +642,14 @@
                     <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
                       A walking route through the stories and landmarks that connect the city to the Titanic trail.
                     </p>
-                    <button type="button" data-book="Cork • Titanic Trail Walking Tour."
-                      class="mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">Book
-                      this tour</button>
+                    <button type="button" data-tour-popup="components/popups/popup-cork-titanic-trail.html"
+                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
+                      Book this tour
+                    </button>
                   </div>
                 </article>
 
-                <!-- Giant's Causeway – Private Guide Bus Tour (Belfast) -->
-                <article data-tour-city="belfast"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img src="assets/img/tour-titanic-800.webp" alt="Basalt columns on the Northern Irish coast"
-                    width="800" height="533" loading="lazy" decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">Belfast <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">8h</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Giant's Causeway – Private Guide Bus Tour</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      Experience Northern Ireland's famous coastline and the legendary basalt columns.
-                    </p>
-                    <button type="button" data-book="Belfast • Giant's Causeway – Private Guide Bus Tour."
-                      class="mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">Book
-                      this tour</button>
-                  </div>
-                </article>
-
-                <!-- Belfast City – Private Chauffeur Day Tour (Belfast) -->
-                <article data-tour-city="belfast"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img src="assets/img/tour-chauffeur-800.webp" alt="Private chauffeur car on an Irish road" width="800"
-                    height="533" loading="lazy" decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">Belfast <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">7h</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Belfast City – Private Chauffeur Day Tour</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      A private day with a knowledgeable local driver exploring Belfast's historic quarters.
-                    </p>
-                    <button type="button" data-book="Belfast • Belfast City – Private Chauffeur Day Tour."
-                      class="mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">Book
-                      this tour</button>
-                  </div>
-                </article>
-
-                <!-- Game of Thrones Full Day Private Tour (Belfast) -->
-                <article data-tour-city="belfast"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img src="assets/img/tour-wicklow-800.webp" alt="Misty Irish countryside" width="800" height="533"
-                    loading="lazy" decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">Belfast <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">8h</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Game of Thrones Full Day Private Tour</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      Follow the stunning real-world filming locations across County Antrim and beyond.
-                    </p>
-                    <button type="button" data-book="Belfast • Game of Thrones Full Day Private Tour."
-                      class="mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">Book
-                      this tour</button>
-                  </div>
-                </article>
-
-                <!-- Belfast Cavehill Walking Tour (Belfast) -->
-                <article data-tour-city="belfast"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img src="assets/img/tour-wicklow-800.webp" alt="Cavehill overlooking Belfast" width="800"
-                    height="533" loading="lazy" decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">Belfast <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">2h
-                        30m</span></p>
-                    <h3 class="mt-2 text-h3">Belfast Cavehill Walking Tour</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      Panoramic summit views over the city, the Irish Sea, and Belfast Lough.
-                    </p>
-                    <button type="button" data-book="Belfast • Belfast Cavehill Walking Tour."
-                      class="mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">Book
-                      this tour</button>
-                  </div>
-                </article>
-
-                <!-- Private Tour to Gougane Barra and Glengarriff (Cork) -->
-                <article data-tour-city="cork"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img src="assets/img/tour-wicklow-800.webp" alt="Irish mountain landscape" width="800" height="533"
-                    loading="lazy" decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">Cork <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">8h</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Private Tour to Gougane Barra and Glengarriff</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      Lakeside monasteries, coastal gardens, and the wild beauty of West Cork.
-                    </p>
-                    <button type="button" data-book="Cork • Private Tour to Gougane Barra and Glengarriff."
-                      class="mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">Book
-                      this tour</button>
-                  </div>
-                </article>
-
-                <!-- Ring of Kerry – Private Day Tour (Cork) -->
+                <!-- 8. Ring of Kerry – Private Day Tour (Cork) -->
                 <article data-tour-city="cork"
                   class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
                   <img src="assets/img/tour-chauffeur-800.webp" alt="Car travelling through Ireland" width="800"
@@ -731,13 +666,14 @@
                     <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
                       Rugged coastlines, mountain passes, and colourful fishing villages.
                     </p>
-                    <button type="button" data-book="Cork • Ring of Kerry – Private Day Tour."
-                      class="mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">Book
-                      this tour</button>
+                    <button type="button" data-tour-popup="components/popups/popup-cork-ring-of-kerry.html"
+                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">
+                      Book this tour
+                    </button>
                   </div>
                 </article>
 
-                <!-- Cliffs of Moher from Galway – Private Tour (Galway) -->
+                <!-- 9. Cliffs of Moher from Galway – Private Tour (Galway) -->
                 <article data-tour-city="galway"
                   class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
                   <img src="assets/img/tour-cliffs-800.webp" alt="Cliffs of Moher above the Atlantic Ocean" width="800"
@@ -754,9 +690,10 @@
                     <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
                       The most direct and spectacular route to the Cliffs of Moher and the Burren from Galway.
                     </p>
-                    <button type="button" data-book="Galway • Cliffs of Moher from Galway – Private Tour."
-                      class="mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">Book
-                      this tour</button>
+                    <button type="button" data-tour-popup="components/popups/popup-galway-cliffs-moher.html"
+                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">
+                      Book this tour
+                    </button>
                   </div>
                 </article>
               </div>
@@ -1368,6 +1305,17 @@
     </svg>
   </a>
 
+  <!-- Tour Details Modal Dialog -->
+  <div id="tour-modal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+    <div id="tour-modal-backdrop" aria-hidden="true"></div>
+    <div id="tour-modal-container" role="document">
+      <div id="tour-modal-content" class="custom-popup-scroll">
+        <!-- Content will be injected dynamically from separate popup HTML files -->
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/glightbox/glightbox.min.js" defer></script>
   <script src="src/main.js" defer></script>
 </body>
 

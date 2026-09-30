@@ -609,6 +609,155 @@
   });
 
   /* -------------------------------------------------------------------------
+     Tour Details Modal / Popup
+     Dynamically loads dedicated popup files on click of any [data-tour-popup] button.
+  ------------------------------------------------------------------------- */
+  const tourModal = document.getElementById("tour-modal");
+  const tourModalBackdrop = document.getElementById("tour-modal-backdrop");
+  const tourModalContent = document.getElementById("tour-modal-content");
+  const tourPopupButtons = document.querySelectorAll("[data-tour-popup]");
+  const tourPopupCache = new Map();
+  let lastFocusedTourTrigger = null;
+  let activeTourLightbox = null;
+
+  function closeTourPopup() {
+    if (!tourModal || !tourModal.classList.contains("is-active")) return;
+    if (activeTourLightbox) {
+      try {
+        activeTourLightbox.close();
+      } catch (e) {}
+    }
+    tourModal.classList.remove("is-active");
+    tourModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (lastFocusedTourTrigger && typeof lastFocusedTourTrigger.focus === "function") {
+      lastFocusedTourTrigger.focus();
+    }
+  }
+
+  function initPopupLightbox(container) {
+    if (activeTourLightbox) {
+      try {
+        activeTourLightbox.destroy();
+      } catch (e) {}
+      activeTourLightbox = null;
+    }
+    if (typeof GLightbox !== "undefined") {
+      activeTourLightbox = GLightbox({
+        selector: ".glightbox",
+        touchNavigation: true,
+        loop: true,
+        autoplayVideos: false,
+        zoomable: true,
+        draggable: true,
+        openEffect: "zoom",
+        closeEffect: "zoom",
+        slideEffect: "slide",
+      });
+
+      // Maintain modal scroll lock when lightbox closes
+      activeTourLightbox.on("close", () => {
+        if (tourModal?.classList.contains("is-active")) {
+          document.body.style.overflow = "hidden";
+        }
+      });
+    }
+  }
+
+  function wirePopupInternals(container) {
+    // Initialize GLightbox for gallery images
+    initPopupLightbox(container);
+
+    // Close buttons inside popup
+    container.querySelectorAll(".tour-popup-close").forEach((btn) => {
+      btn.addEventListener("click", closeTourPopup);
+    });
+
+    // Booking button inside popup
+    container.querySelectorAll(".tour-popup-book-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const wrapper = btn.closest(".tour-popup-wrapper");
+        const serviceName = wrapper ? wrapper.dataset.tourBooking : "";
+        closeTourPopup();
+        if (serviceName) {
+          sendToBooking({ service: serviceName });
+        }
+      });
+    });
+  }
+
+  async function openTourPopup(fileUrl, triggerEl) {
+    if (!tourModal || !tourModalContent) return;
+    lastFocusedTourTrigger = triggerEl;
+
+    // Open modal container
+    tourModal.classList.add("is-active");
+    tourModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    // If cached, render immediately
+    if (tourPopupCache.has(fileUrl)) {
+      tourModalContent.innerHTML = tourPopupCache.get(fileUrl);
+      wirePopupInternals(tourModalContent);
+      tourModalContent.scrollTop = 0;
+      return;
+    }
+
+    // Elegant loading spinner
+    tourModalContent.innerHTML = `
+      <div class="flex flex-col items-center justify-center p-12 text-center">
+        <div class="size-8 animate-spin rounded-full border-2 border-accent border-t-transparent"></div>
+        <p class="mt-4 text-sm font-medium text-muted">Loading tour details...</p>
+      </div>
+    `;
+
+    try {
+      const response = await fetch(fileUrl);
+      if (!response.ok) throw new Error("HTTP " + response.status);
+      const html = await response.text();
+      tourPopupCache.set(fileUrl, html);
+      tourModalContent.innerHTML = html;
+      wirePopupInternals(tourModalContent);
+      tourModalContent.scrollTop = 0;
+    } catch (err) {
+      console.warn("Could not fetch popup file:", fileUrl, err);
+      tourModalContent.innerHTML = `
+        <div class="p-8 text-center">
+          <p class="text-base font-semibold text-danger">Failed to load tour details.</p>
+          <p class="mt-2 text-sm text-muted">Please check your connection and try again.</p>
+          <button type="button" class="tour-popup-close mt-6 rounded-full bg-sunken px-6 py-2 text-sm font-medium text-ink hover:bg-line">
+            Close
+          </button>
+        </div>
+      `;
+      wirePopupInternals(tourModalContent);
+    }
+  }
+
+  tourPopupButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const fileUrl = btn.dataset.tourPopup;
+      if (fileUrl) {
+        openTourPopup(fileUrl, btn);
+      }
+    });
+  });
+
+  tourModalBackdrop?.addEventListener("click", closeTourPopup);
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if (document.body.classList.contains("glightbox-open")) {
+        return;
+      }
+      if (tourModal?.classList.contains("is-active")) {
+        closeTourPopup();
+      }
+    }
+  });
+
+  /* -------------------------------------------------------------------------
      Hero quote bar. It carries a selection down to the form. It deliberately
      does not calculate anything: every price on this page is fixed and
      already published.
