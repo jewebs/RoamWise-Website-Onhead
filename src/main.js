@@ -629,40 +629,40 @@
      Validation
   ------------------------------------------------------------------------- */
   const RULES = {
-    "f-service": (value) => (value ? null : "Choose the transfer or tour you need."),
-    "f-name": (value) => (value.trim().length >= 2 ? null : "Tell John who to look for."),
+    "f-service": (value) => (value ? null : "Required field"),
+    "f-name": (value) => (value.trim().length >= 2 ? null : "Required field"),
     /* Empty and malformed are different mistakes and get different sentences.
        Telling someone who has typed nothing that their email "does not look
        right" reads as a bug in the form. */
     "f-email": (value) => {
-      if (!value.trim()) return "John needs an address to reply to.";
+      if (!value.trim()) return "Required field";
       return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value.trim())
         ? null
-        : "That email does not look right. John replies to this address.";
+        : "This email address is incorrect, please try again.";
     },
     "f-passengers": (value) => {
       const n = Number(value);
       return Number.isInteger(n) && n >= 1 && n <= 4
         ? null
-        : "One car takes four passengers. For a larger group, message John.";
+        : "One car takes four passengers.";
     },
     /* These two read what was typed, not a parsed value, so "did not read"
        and "left blank" stay separate sentences. Telling someone who typed a
        date that they have not picked one is what started all this. */
     "f-date": (raw) => {
-      if (!raw.trim()) return "Pick the day you travel.";
+      if (!raw.trim()) return "Required field";
       const value = parseDate(raw);
       if (!value) return "That date did not read. Day, month, year, like 22/08/2026.";
       if (value < todayISO) return "That date has already passed.";
-      if (value > maxISO) return "Check the year on that. For a date further out than two years, message John.";
+      if (value > maxISO) return "Check the year on that. For a date further out than two years.";
       return null;
     },
     "f-time": (raw) => {
-      if (!raw.trim()) return "What time should John be there?";
+      if (!raw.trim()) return "Required field";
       return parseTime(raw) ? null : "That time did not read. Try 06:40, on a 24-hour clock.";
     },
-    "f-pickup": (value) => (value.trim().length >= 3 ? null : "Where should John collect you?"),
-    "f-dropoff": (value) => (value.trim().length >= 3 ? null : "Where are you going?"),
+    "f-pickup": (value) => (value.trim().length >= 3 ? null : "Required field"),
+    "f-dropoff": (value) => (value.trim().length >= 3 ? null : "Required field"),
   };
 
   function errorEl(field) {
@@ -814,7 +814,7 @@
     const lead = sentPanel.querySelector("[data-sent-lead]");
     if (lead) {
       lead.textContent = opened
-        ? "The message is written and waiting in WhatsApp with every detail already in it. Press send there and it lands on John's own phone. He answers most requests within the hour, day or night."
+        ? "The message is written and waiting in WhatsApp with every detail already in it. Press send there and it lands directly on the phone. Most requests are answered within the hour, day or night."
         : "Your browser blocked the WhatsApp window. Open it with the button below: the message is already written, you only need to press send.";
     }
 
@@ -837,7 +837,7 @@
 
       if (invalid.length) {
         setStatus(
-          `${invalid.length} ${invalid.length === 1 ? "field needs" : "fields need"} a moment before this can go to John.`,
+          `${invalid.length} ${invalid.length === 1 ? "field needs" : "fields need"} required fields are missing.`,
         );
         invalid[0].focus();
         invalid[0].scrollIntoView({
