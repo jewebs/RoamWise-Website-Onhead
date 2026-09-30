@@ -477,6 +477,20 @@
     }
   }
 
+  /* Header Logo switching on scroll */
+  #site-header:not([data-scrolled]) .logo-dark {
+    display: none !important;
+  }
+  #site-header:not([data-scrolled]) .logo-light {
+    display: block !important;
+  }
+  #site-header[data-scrolled] .logo-light {
+    display: none !important;
+  }
+  #site-header[data-scrolled] .logo-dark {
+    display: block !important;
+  }
+
   footer .site-logo {
     height: 40px !important;
   }
@@ -1238,5 +1252,90 @@ h1, h2, h3, h4, h5, h6, .text-h1, .text-h2, .text-h3, p, .label, .prose-measure 
   }
   .whatsapp-float {
     transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   Hero opening door animation & hero-scrim (from JohnCourrier)
+   ========================================================================== */
+
+:root {
+  --forest: #113b29;
+}
+
+/* Hero door opening animation */
+@keyframes scrollline {
+  0% { top: -100%; }
+  60% { top: 100%; }
+  to { top: 100%; }
+}
+
+@keyframes doorOpenL {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes doorOpenR {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Door panels */
+.door {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background: var(--forest, #113b29);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.door-l {
+  left: 0;
+  box-shadow: 6px 0 30px rgba(0, 0, 0, 0.35);
+  animation: doorOpenL 1.3s cubic-bezier(0.77, 0, 0.175, 1) 0.15s forwards;
+}
+
+.door-r {
+  right: 0;
+  box-shadow: -6px 0 30px rgba(0, 0, 0, 0.35);
+  animation: doorOpenR 1.3s cubic-bezier(0.77, 0, 0.175, 1) 0.15s forwards;
+}
+
+/* Hero scrim overlay */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg,
+      rgba(14, 26, 20, 0.65) 0%,
+      rgba(14, 26, 20, 0.15) 22%,
+      transparent 38%,
+      transparent 72%,
+      rgba(14, 26, 20, 0.4) 86%,
+      rgba(14, 26, 20, 0.85) 100%),
+    linear-gradient(78deg,
+      rgba(14, 26, 20, 0.96) 0%,
+      rgba(14, 26, 20, 0.92) 28%,
+      rgba(14, 26, 20, 0.78) 40%,
+      rgba(14, 26, 20, 0.35) 54%,
+      rgba(14, 26, 20, 0.08) 64%,
+      transparent 72%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .door {
+    display: none !important;
   }
 }

@@ -21,6 +21,8 @@
 
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/archivo-variable-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-variable-latin.woff2" crossorigin />
+  <link rel="preload" as="image" href="assets/img/Roamwise_LogoBranco_Horizontal@2x.png" />
+  <link rel="preload" as="image" href="assets/img/Roamwise_Logo_Horizontal@2x.png" />
   <link rel="stylesheet" href="dist/styles.css" />
 
 
@@ -85,7 +87,8 @@
 
       <!-- Logo -->
       <a href="#top" class="flex shrink-0 items-center gap-2" aria-label="Roamwise, home">
-        <img src="assets/img/Roamwise_Logo_Horizontal@2x.png" alt="Roamwise" class="site-logo" />
+        <img src="assets/img/Roamwise_LogoBranco_Horizontal@2x.png" alt="Roamwise" class="site-logo logo-light" />
+        <img src="assets/img/Roamwise_Logo_Horizontal@2x.png" alt="Roamwise" class="site-logo logo-dark" />
       </a>
 
       <!-- Nav links: desktop only -->
@@ -154,10 +157,14 @@
                   linear-gradient(to top, oklch(0.15 0.018 250 / 0.7) 0%, oklch(0.15 0.018 250 / 0.3) 45%, oklch(0.15 0.018 250 / 0.45) 100%);
               " aria-hidden="true"></div>
 
+            <div class="hero-scrim"></div>
+            <div class="door door-l" id="doorL"></div>
+            <div class="door door-r" id="doorR"></div>
+
             <!-- Top padding clears the fixed bar, which no longer takes up
                  space in the flow. -->
             <div
-              class="mx-auto flex max-w-7xl flex-col items-center px-gutter pt-32 pb-28 text-center text-on-image sm:px-8 sm:pt-44 sm:pb-32 lg:pt-52 lg:pb-40">
+              class="relative z-[3] mx-auto flex max-w-7xl flex-col items-center px-gutter pt-32 pb-28 text-center text-on-image sm:px-8 sm:pt-44 sm:pb-32 lg:pt-52 lg:pb-40">
               <p
                 class="label inline-flex items-center gap-2 rounded-full border border-on-image/25 bg-on-image/10 px-4 py-2 text-on-image">
                 <span class="size-1.5 rounded-full bg-accent" aria-hidden="true"></span>
