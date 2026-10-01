@@ -741,6 +741,7 @@
   }
 
   .tour-card {
+    cursor: pointer !important;
     flex: 0 0 100% !important;
     width: 100% !important;
     min-width: 100% !important;

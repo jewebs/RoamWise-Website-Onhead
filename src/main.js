@@ -744,6 +744,20 @@
     });
   });
 
+  // Also allow clicking anywhere on the tour card (such as on the image) to open the tour popup
+  document.querySelectorAll(".tour-card").forEach((card) => {
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("button") || e.target.closest("a")) return;
+      const btn = card.querySelector("[data-tour-popup]");
+      if (btn) {
+        const fileUrl = btn.dataset.tourPopup;
+        if (fileUrl) {
+          openTourPopup(fileUrl, btn);
+        }
+      }
+    });
+  });
+
   tourModalBackdrop?.addEventListener("click", closeTourPopup);
 
   window.addEventListener("keydown", (e) => {
