@@ -16,7 +16,7 @@
      anything: it says the message is written and waiting, because the reader
      still has to press send in WhatsApp. See README.md.
   ========================================================================= */
-  const WHATSAPP_URL = "https://wa.me/353894791366";
+  const WHATSAPP_URL = "http://wa.me/353894551295";
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

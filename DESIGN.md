@@ -162,4 +162,4 @@ Tours, all departing Dublin.
 | Dublin: Private Chauffeur Tour | 4 hr | From €540 |
 | Wicklow & Glendalough Private Day Tour | 7 hr | From €630 |
 
-Contact: `+353 89 479 1366`, WhatsApp and phone, 24×7.
+Contact: `+353 89 455 1295`, WhatsApp and phone, 24×7.
