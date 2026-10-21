@@ -23,7 +23,7 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-variable-latin.woff2" crossorigin />
   <link rel="preload" as="image" href="assets/img/Roamwise_LogoBranco_Horizontal@2x.png" />
   <link rel="preload" as="image" href="assets/img/Roamwise_Logo_Horizontal@2x.png" />
-  <link rel="stylesheet" href="dist/styles.css" />
+  <link rel="stylesheet" href="dist/styles.css?v=2" />
   <link rel="stylesheet" href="assets/vendor/glightbox/glightbox.min.css" />
 
 
@@ -446,13 +446,59 @@
       ================================================================== -->
     <section id="tours" class="scroll-mt-28 px-gutter pt-24 sm:px-8 sm:pt-32" aria-labelledby="tours-title">
       <div class="mx-auto max-w-7xl">
-        <div class="reveal tours-flex-wrapper">
+        <!-- Tours Header & Tabs (Centered single column) -->
+        <div class="reveal mx-auto max-w-3xl text-center">
+          <p class="label text-accent-deep">Private tours</p>
+          <h2 id="tours-title" class="mt-3 text-h2">Don't just visit Ireland.<br />Discover it.</h2>
+          <p class="mx-auto mt-5 text-muted">
+            There are places you'll find on every itinerary. And then there are stories, roads,
+            landscapes, and hidden details you only discover when you travel with someone who
+            truly knows the destination.
+          </p>
+          <p class="mx-auto mt-3 text-muted">
+            Roamwise private tours are designed for those who want to experience Ireland with
+            more freedom, local insight, and personal attention — without the rigid schedules and
+            crowds of traditional group tours.
+          </p>
+          <p class="mt-6 text-sm text-muted">
+            Cliffs of Moher • Galway • Belfast • Giant’s Causeway • Wicklow • Glendalough •
+            Dublin • Custom Journeys
+          </p>
 
-          <!-- Left column on desktop/tablet, bottom on mobile: Carousel ONLY -->
-          <div class="tours-carousel-col">
-            <!-- Carousel container with relative positioning for lateral arrows -->
-            <div class="tour-carousel-box">
-              <div id="tour-grid" class="tour-carousel">
+          <!-- Centered City Filter Tabs with "All" first -->
+          <div class="mt-8 flex items-center justify-center">
+            <div class="tours-tabs-scroll-area">
+              <div class="tours-tabs-wrapper" aria-label="Filter tours by city">
+                <button type="button" aria-pressed="true" data-tour-filter="all"
+                  class="rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-150 aria-pressed:bg-accent aria-pressed:text-accent-ink text-muted hover:text-ink shrink-0">All</button>
+                <button type="button" aria-pressed="false" data-tour-filter="dublin"
+                  class="rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-150 aria-pressed:bg-accent aria-pressed:text-accent-ink text-muted hover:text-ink shrink-0">Dublin</button>
+                <button type="button" aria-pressed="false" data-tour-filter="belfast"
+                  class="rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-150 aria-pressed:bg-accent aria-pressed:text-accent-ink text-muted hover:text-ink shrink-0">Belfast</button>
+                <button type="button" aria-pressed="false" data-tour-filter="cork"
+                  class="rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-150 aria-pressed:bg-accent aria-pressed:text-accent-ink text-muted hover:text-ink shrink-0">Cork</button>
+                <button type="button" aria-pressed="false" data-tour-filter="galway"
+                  class="rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-150 aria-pressed:bg-accent aria-pressed:text-accent-ink text-muted hover:text-ink shrink-0">Galway</button>
+              </div>
+              <div class="tours-swipe-hint sm:hidden" aria-hidden="true" title="Deslize para ver mais">
+                <svg viewBox="0 0 24 24" class="size-6 swipe-hand-svg" fill="none" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
+                  <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
+                  <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
+                  <path
+                    d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+                  <path d="M16 2l3 3-3 3" opacity="0.8" />
+                  <path d="M19 5H9" opacity="0.8" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tours Grid (Below tabs, centered, equal sizes, responsive) -->
+        <div class="reveal mt-12 sm:mt-16">
+          <div id="tour-grid" class="tours-grid">
                 <!-- 1. Cliffs of Moher & Galway (Dublin) -->
                 <article data-tour-city="dublin"
                   class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
@@ -724,72 +770,7 @@
                     </button>
                   </div>
                 </article>
-              </div>
-
-              <!-- Navigation arrows: laterais no desktop e tablet, embaixo no mobile -->
-              <div class="tour-nav-arrows">
-                <button type="button" id="tour-prev" aria-label="Previous tour" class="tour-arrow-btn tour-arrow-prev">
-                  <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2.2"
-                    aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                <button type="button" id="tour-next" aria-label="Next tour" class="tour-arrow-btn tour-arrow-next">
-                  <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2.2"
-                    aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </div>
           </div>
-
-          <!-- Right column on desktop/tablet, top on mobile: Texts -->
-          <div class="tours-text-col">
-            <p class="label text-accent-deep">Private tours</p>
-            <h2 id="tours-title" class="mt-3 text-h2">Don't just visit Ireland.<br />Discover it.</h2>
-            <p class="prose-measure mt-5 text-muted">
-              There are places you'll find on every itinerary. And then there are stories, roads,
-              landscapes, and hidden details you only discover when you travel with someone who
-              truly knows the destination.
-            </p>
-            <p class="prose-measure mt-3 text-muted">
-              Roamwise private tours are designed for those who want to experience Ireland with
-              more freedom, local insight, and personal attention — without the rigid schedules and
-              crowds of traditional group tours.
-            </p>
-            <p class="mt-6 text-sm text-muted">
-              Cliffs of Moher • Galway • Belfast • Giant’s Causeway • Wicklow • Glendalough •
-              Dublin • Custom Journeys
-            </p>
-
-            <!-- Filter by city tabs (positioned AFTER texts as requested) with swipe gesture hint on mobile -->
-            <div class="tours-tabs-scroll-area">
-              <div class="tours-tabs-wrapper" aria-label="Filter tours by city">
-                <button type="button" aria-pressed="true" data-tour-filter="dublin"
-                  class="rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-150 aria-pressed:bg-accent aria-pressed:text-accent-ink text-muted hover:text-ink shrink-0">Dublin</button>
-                <button type="button" aria-pressed="false" data-tour-filter="belfast"
-                  class="rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-150 aria-pressed:bg-accent aria-pressed:text-accent-ink text-muted hover:text-ink shrink-0">Belfast</button>
-                <button type="button" aria-pressed="false" data-tour-filter="cork"
-                  class="rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-150 aria-pressed:bg-accent aria-pressed:text-accent-ink text-muted hover:text-ink shrink-0">Cork</button>
-                <button type="button" aria-pressed="false" data-tour-filter="galway"
-                  class="rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-150 aria-pressed:bg-accent aria-pressed:text-accent-ink text-muted hover:text-ink shrink-0">Galway</button>
-              </div>
-              <div class="tours-swipe-hint sm:hidden" aria-hidden="true" title="Deslize para ver mais">
-                <svg viewBox="0 0 24 24" class="size-6 swipe-hand-svg" fill="none" stroke="currentColor"
-                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
-                  <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
-                  <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
-                  <path
-                    d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
-                  <path d="M16 2l3 3-3 3" opacity="0.8" />
-                  <path d="M19 5H9" opacity="0.8" />
-                </svg>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -1344,7 +1325,7 @@
   </div>
 
   <script src="assets/vendor/glightbox/glightbox.min.js" defer></script>
-  <script src="src/main.js" defer></script>
+  <script src="src/main.js?v=2" defer></script>
 </body>
 
 </html>

@@ -487,55 +487,33 @@
   });
 
   /* -------------------------------------------------------------------------
-     Tour city filters and carousel navigation.
-     Only one city's tours are shown at a time. The carousel scrolls 1 by 1.
+     Tour city filters and responsive grid display.
+     'all' displays all tours across Ireland; city filters display only that city.
   ------------------------------------------------------------------------- */
   const tourFilters = Array.from(document.querySelectorAll("[data-tour-filter]"));
   const tourCards = Array.from(document.querySelectorAll("[data-tour-city]"));
-  const tourGrid = document.getElementById("tour-grid");
-  const tourPrev = document.getElementById("tour-prev");
-  const tourNext = document.getElementById("tour-next");
-
-  function getTourScrollStep() {
-    return tourGrid ? tourGrid.clientWidth : 400;
-  }
-
-  function updateTourNav() {
-    if (!tourGrid || !tourPrev || !tourNext) return;
-    const maxScroll = tourGrid.scrollWidth - tourGrid.clientWidth - 10;
-    tourPrev.disabled = tourGrid.scrollLeft <= 5;
-    tourNext.disabled = tourGrid.scrollLeft >= maxScroll;
-  }
 
   function selectTourCity(city) {
+    const target = (city || "").toLowerCase().trim();
+
     tourFilters.forEach((button) => {
-      button.setAttribute("aria-pressed", String(button.dataset.tourFilter === city));
+      const btnFilter = (button.dataset.tourFilter || "").toLowerCase().trim();
+      button.setAttribute("aria-pressed", String(btnFilter === target));
     });
+
     tourCards.forEach((card) => {
-      card.hidden = card.dataset.tourCity !== city;
+      const cardCity = (card.dataset.tourCity || "").toLowerCase().trim();
+      const isMatch = target === "all" || target === "" || cardCity === target;
+
+      if (isMatch) {
+        card.removeAttribute("hidden");
+        card.style.removeProperty("display");
+      } else {
+        card.setAttribute("hidden", "");
+        card.style.setProperty("display", "none", "important");
+      }
     });
-    if (tourGrid) {
-      tourGrid.scrollTo({ left: 0, behavior: "smooth" });
-      setTimeout(updateTourNav, 150);
-    }
   }
-
-  tourPrev?.addEventListener("click", () => {
-    if (tourGrid) {
-      tourGrid.scrollBy({ left: -getTourScrollStep(), behavior: "smooth" });
-      setTimeout(updateTourNav, 300);
-    }
-  });
-
-  tourNext?.addEventListener("click", () => {
-    if (tourGrid) {
-      tourGrid.scrollBy({ left: getTourScrollStep(), behavior: "smooth" });
-      setTimeout(updateTourNav, 300);
-    }
-  });
-
-  tourGrid?.addEventListener("scroll", updateTourNav, { passive: true });
-  window.addEventListener("resize", updateTourNav, { passive: true });
 
   tourFilters.forEach((button) => {
     button.addEventListener("click", () => selectTourCity(button.dataset.tourFilter));
@@ -547,7 +525,7 @@
     if (toursSwipeHint) toursSwipeHint.style.opacity = "0.2";
   }, { passive: true });
 
-  if (tourFilters.length && tourCards.length) selectTourCity("dublin");
+  if (tourFilters.length && tourCards.length) selectTourCity("all");
 
   /* -------------------------------------------------------------------------
      Booking form elements
