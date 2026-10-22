@@ -527,9 +527,275 @@
 
   if (tourFilters.length && tourCards.length) selectTourCity("all");
 
-  /* -------------------------------------------------------------------------
-     Booking form elements
-  ------------------------------------------------------------------------- */
+  /* =========================================================================
+     CONFIGURAÇÃO CENTRAL DE TOURS: HORÁRIOS E VALORES POR OPÇÃO DE PASSAGEIROS
+     -------------------------------------------------------------------------
+     Para alterar o preço ou o horário/duração de qualquer tour:
+     - 'duration': texto do horário/duração exibido no card (ex: "12h 30m", "8h", "1h 30m")
+     - 'price': valor base de partida (exibido como 'From €...' no card e equivalente a 'car-1')
+     - 'prices': valores em Euro para cada opção de Passengers no formulário:
+         * 'car-1':   01-04 passengers (1 car)
+         * 'van-1':   04-07 passengers (1 van)
+         * 'van-car': 08-11 passengers (1 van + 1 car)
+         * 'vans-2':  12-14 passengers (2 vans)
+     
+     Qualquer valor alterado aqui é refletido AUTOMATICAMENTE nos cards e no
+     formulário de reserva (preços do popover de passageiros, totais e recibo).
+     ========================================================================= */
+  const TOURS_CONFIG = {
+    // --- DUBLIN TOURS ---
+    "cliffs-moher-galway": {
+      service: "Dublin • Private Tour: Cliffs of Moher & Galway.",
+      duration: "12h 30m",
+      price: 790,
+      prices: {
+        "car-1": 790,
+        "van-1": 1290,
+        "van-car": 2080,
+        "vans-2": 2580,
+      },
+    },
+    "belfast-titanic-giants": {
+      service: "Dublin • Private Tour: Belfast, Titanic & Giants.",
+      duration: "13h",
+      price: 840,
+      prices: {
+        "car-1": 840,
+        "van-1": 1370,
+        "van-car": 2210,
+        "vans-2": 2740,
+      },
+    },
+    "wicklow-glendalough": {
+      service: "Dublin • Wicklow & Glendalough Private Day Tour.",
+      duration: "7h",
+      price: 630,
+      prices: {
+        "car-1": 630,
+        "van-1": 1030,
+        "van-car": 1660,
+        "vans-2": 2060,
+      },
+    },
+    "dublin-chauffeur": {
+      service: "Dublin • Dublin: Private Chauffeur Tour.",
+      duration: "4h or 8h",
+      price: 540,
+      prices: {
+        "car-1": 540,
+        "van-1": 880,
+        "van-car": 1420,
+        "vans-2": 1760,
+      },
+    },
+
+    // --- BELFAST TOURS ---
+    "giants-causeway": {
+      service: "Belfast • Giant's Causeway – Private Guide Bus Tour.",
+      duration: "8h",
+      price: 680,
+      prices: {
+        "car-1": 680,
+        "van-1": 1110,
+        "van-car": 1790,
+        "vans-2": 2220,
+      },
+    },
+    "belfast-city": {
+      service: "Belfast • Belfast City – Private Chauffeur Day Tour.",
+      duration: "7h",
+      price: 590,
+      prices: {
+        "car-1": 590,
+        "van-1": 960,
+        "van-car": 1550,
+        "vans-2": 1930,
+      },
+    },
+    "game-of-thrones": {
+      service: "Belfast • Game of Thrones Private Tour.",
+      duration: "8h",
+      price: 690,
+      prices: {
+        "car-1": 690,
+        "van-1": 1130,
+        "van-car": 1820,
+        "vans-2": 2250,
+      },
+    },
+
+    // --- CORK TOURS ---
+    "titanic-trail": {
+      service: "Cork • Titanic Trail Walking Tour.",
+      duration: "1h 30m",
+      price: 160,
+      prices: {
+        "car-1": 160,
+        "van-1": 260,
+        "van-car": 420,
+        "vans-2": 520,
+      },
+    },
+    "ring-of-kerry": {
+      service: "Cork • Ring of Kerry – Private Day Tour.",
+      duration: "8h",
+      price: 720,
+      prices: {
+        "car-1": 720,
+        "van-1": 1180,
+        "van-car": 1900,
+        "vans-2": 2350,
+      },
+    },
+    "gougane-barra": {
+      service: "Cork • Private Tour to Gougane Barra and Glengarriff.",
+      duration: "8h",
+      price: 650,
+      prices: {
+        "car-1": 650,
+        "van-1": 1060,
+        "van-car": 1710,
+        "vans-2": 2120,
+      },
+    },
+
+    // --- GALWAY TOURS ---
+    "galway-cliffs-moher": {
+      service: "Galway • Cliffs of Moher from Galway – Private Tour.",
+      duration: "1h 30m",
+      price: 490,
+      prices: {
+        "car-1": 490,
+        "van-1": 800,
+        "van-car": 1290,
+        "vans-2": 1600,
+      },
+    },
+
+    // --- AIRPORT TRANSFERS ---
+    "dublin-airport-city": {
+      service: "Dublin Airport to Dublin City Centre.",
+      duration: "45m",
+      price: 85,
+      prices: {
+        "car-1": 85,
+        "van-1": 140,
+        "van-car": 225,
+        "vans-2": 280,
+      },
+    },
+    "dublin-city-airport": {
+      service: "Dublin City Centre to Dublin Airport.",
+      duration: "45m",
+      price: 65,
+      prices: {
+        "car-1": 65,
+        "van-1": 110,
+        "van-car": 175,
+        "vans-2": 215,
+      },
+    },
+    "cork-airport-city": {
+      service: "Cork Airport to Cork City Centre.",
+      duration: "30m",
+      price: 50,
+      prices: {
+        "car-1": 50,
+        "van-1": 85,
+        "van-car": 135,
+        "vans-2": 165,
+      },
+    },
+    "cork-city-airport": {
+      service: "Cork City Centre to Cork Airport.",
+      duration: "30m",
+      price: 50,
+      prices: {
+        "car-1": 50,
+        "van-1": 85,
+        "van-car": 135,
+        "vans-2": 165,
+      },
+    },
+    "belfast-airport-city": {
+      service: "Belfast Airport to Belfast City Centre.",
+      duration: "40m",
+      price: 65,
+      prices: {
+        "car-1": 65,
+        "van-1": 110,
+        "van-car": 175,
+        "vans-2": 215,
+      },
+    },
+    "belfast-city-airport": {
+      service: "Belfast City Centre to Belfast Airport.",
+      duration: "40m",
+      price: 65,
+      prices: {
+        "car-1": 65,
+        "van-1": 110,
+        "van-car": 175,
+        "vans-2": 215,
+      },
+    },
+  };
+
+  // Expose globally for easy inspection if needed
+  window.TOURS_CONFIG = TOURS_CONFIG;
+
+  // Active pricing lookup table
+  const TOUR_PRICING = {};
+
+  /* Sincroniza a configuração de preços e horários (TOURS_CONFIG) com os cards e o formulário */
+  function syncToursConfigToUI() {
+    // 1. Atualizar mapa de preços por nome de serviço
+    Object.values(TOURS_CONFIG).forEach((tour) => {
+      if (tour.service) {
+        TOUR_PRICING[tour.service] = tour.prices?.["car-1"] ?? tour.price;
+      }
+    });
+
+    // 2. Atualizar todos os cards na página (duração, preço e botão)
+    document.querySelectorAll(".tour-card").forEach((card) => {
+      const tourId = card.dataset.tourId;
+      const bookBtn = card.querySelector(".tour-book-btn");
+      const serviceName = bookBtn?.dataset.tourBook;
+
+      const tour = (tourId && TOURS_CONFIG[tourId])
+        || Object.values(TOURS_CONFIG).find((t) => t.service === serviceName);
+
+      if (tour) {
+        // Atualizar texto de Duração / Horário
+        const durationEl = card.querySelector(".tour-duration-value");
+        if (durationEl && tour.duration) {
+          durationEl.textContent = tour.duration;
+        }
+
+        const basePrice = tour.prices?.["car-1"] ?? tour.price;
+
+        // Atualizar badge de Preço
+        const priceEl = card.querySelector(".tour-price-value");
+        if (priceEl && basePrice) {
+          priceEl.textContent = `From €${Number(basePrice).toLocaleString("en-IE")}`;
+        }
+
+        // Atualizar atributos do botão Book Now do card
+        if (bookBtn) {
+          if (basePrice) {
+            bookBtn.dataset.tourPrice = String(basePrice);
+          }
+          if (tour.service) {
+            bookBtn.dataset.tourBook = tour.service;
+          }
+        }
+      }
+    });
+  }
+
+  // Executa a sincronização imediatamente
+  syncToursConfigToUI();
+
   const bookingForm = document.getElementById("booking-form");
   const statusEl = document.getElementById("form-status");
   const sentPanel = document.getElementById("booking-sent");
@@ -537,9 +803,250 @@
   const serviceField = document.getElementById("f-service");
   const passengersField = document.getElementById("f-passengers");
 
+  /* -------------------------------------------------------------------------
+     Passengers Popover Widget (Exact match to Irish English screenshot)
+  ------------------------------------------------------------------------- */
+  let activeTourPrices = {
+    "car-1": 790,
+    "van-1": 1290,
+    "van-car": 2080,
+    "vans-2": 2580,
+  };
+  let currentBasePrice = 790;
+
+  const selectedTierCounts = {
+    "car-1": 1,
+    "van-1": 0,
+    "van-car": 0,
+    "vans-2": 0,
+  };
+
+  let currentSelectionBreakdown = [
+    {
+      tierId: "car-1",
+      label: "01-04 passengers (1 car)",
+      count: 1,
+      unitPrice: 790,
+      subtotal: 790,
+    },
+  ];
+
+  function findTourConfig(tourIdOrService) {
+    if (!tourIdOrService) return null;
+    const clean = String(tourIdOrService).trim();
+    if (TOURS_CONFIG[clean]) return TOURS_CONFIG[clean];
+
+    const normalize = (str) =>
+      str
+        ? String(str)
+            .replace(/&amp;/g, "&")
+            .replace(/\s+/g, " ")
+            .trim()
+            .toLowerCase()
+        : "";
+
+    const target = normalize(clean);
+
+    return (
+      Object.values(TOURS_CONFIG).find((t) => {
+        if (!t.service) return false;
+        return normalize(t.service) === target;
+      }) || null
+    );
+  }
+
+  function getTierUnitPrice(tierId) {
+    if (activeTourPrices && activeTourPrices[tierId] !== undefined) {
+      return Number(activeTourPrices[tierId]);
+    }
+    return currentBasePrice || 790;
+  }
+
+  function calculateTierPrice(basePrice, ratio) {
+    if (ratio === 1.0) return basePrice;
+    return Math.round((basePrice * ratio) / 10) * 10;
+  }
+
+  function formatEuro(amount) {
+    return "€" + Number(amount).toLocaleString("en-IE");
+  }
+
+  function updatePopoverPricing() {
+    const rows = document.querySelectorAll("#passenger-tiers-list .tier-row");
+    let total = 0;
+    let anySelected = false;
+
+    rows.forEach((row) => {
+      const tierId = row.dataset.tierId;
+      const tierPrice = getTierUnitPrice(tierId);
+      const priceLabel = row.querySelector(".tier-price-label");
+      if (priceLabel) priceLabel.textContent = formatEuro(tierPrice);
+
+      const count = selectedTierCounts[tierId] || 0;
+      const countEl = row.querySelector(".tier-count");
+      if (countEl) countEl.textContent = String(count);
+
+      const decBtn = row.querySelector(".tier-dec-btn");
+      if (decBtn) decBtn.disabled = count <= 0;
+
+      if (count > 0) {
+        anySelected = true;
+        total += count * tierPrice;
+      }
+    });
+
+    if (!anySelected) {
+      total = getTierUnitPrice("car-1");
+    }
+
+    const popoverTotal = document.getElementById("passengers-popover-total");
+    if (popoverTotal) popoverTotal.textContent = formatEuro(total);
+  }
+
+  function applyPassengerSelection() {
+    const rows = Array.from(document.querySelectorAll("#passenger-tiers-list .tier-row"));
+    let activeRows = rows.filter((row) => (selectedTierCounts[row.dataset.tierId] || 0) > 0);
+
+    if (activeRows.length === 0) {
+      selectedTierCounts["car-1"] = 1;
+      activeRows = [rows[0]];
+      updatePopoverPricing();
+    }
+
+    let totalAmount = 0;
+    let summaryLabels = [];
+    currentSelectionBreakdown = [];
+
+    activeRows.forEach((row) => {
+      const tierId = row.dataset.tierId;
+      const count = selectedTierCounts[tierId] || 0;
+      const tierPrice = getTierUnitPrice(tierId);
+      const subtotal = count * tierPrice;
+      totalAmount += subtotal;
+
+      const label = row.dataset.label || "01-04 passengers (1 car)";
+      summaryLabels.push(`${count} x ${label}`);
+
+      currentSelectionBreakdown.push({
+        tierId,
+        label,
+        count,
+        unitPrice: tierPrice,
+        subtotal,
+      });
+    });
+
+    const finalSummary = summaryLabels.join(", ");
+    const formattedPrice = formatEuro(totalAmount);
+
+    const displayLabel = document.getElementById("passengers-display-label");
+    if (displayLabel) displayLabel.textContent = finalSummary;
+
+    const displayPrice = document.getElementById("passengers-display-price");
+    if (displayPrice) displayPrice.textContent = formattedPrice;
+
+    const hiddenPassengers = document.getElementById("f-passengers");
+    if (hiddenPassengers) hiddenPassengers.value = finalSummary;
+
+    const hiddenPrice = document.getElementById("f-price");
+    if (hiddenPrice) hiddenPrice.value = formattedPrice;
+
+    const hiddenPriceNum = document.getElementById("f-price-num");
+    if (hiddenPriceNum) hiddenPriceNum.value = String(totalAmount);
+
+    if (hiddenPassengers) clearFieldError(hiddenPassengers);
+  }
+
+  function updateActiveTour(tourIdOrService, customBasePrice) {
+    const config = findTourConfig(tourIdOrService);
+    if (config && config.prices) {
+      activeTourPrices = { ...config.prices };
+      currentBasePrice = Number(config.prices["car-1"] ?? config.price ?? 790);
+    } else if (customBasePrice && !isNaN(customBasePrice)) {
+      const base = Number(customBasePrice);
+      currentBasePrice = base;
+      activeTourPrices = {
+        "car-1": base,
+        "van-1": calculateTierPrice(base, 1.633),
+        "van-car": calculateTierPrice(base, 2.633),
+        "vans-2": calculateTierPrice(base, 3.266),
+      };
+    }
+    updatePopoverPricing();
+    applyPassengerSelection();
+  }
+
+  function updateTourBasePrice(newBase, tourIdOrService) {
+    if (tourIdOrService) {
+      updateActiveTour(tourIdOrService, newBase);
+    } else if (newBase && !isNaN(newBase)) {
+      updateActiveTour(null, newBase);
+    }
+  }
+
+  const passengersWidgetContainer = document.getElementById("passengers-widget-container");
+  const passengersDisplayBtn = document.getElementById("f-passengers-display");
+  const passengersPopover = document.getElementById("passengers-popover");
+  const passengersChevron = document.getElementById("passengers-chevron");
+  const passengersApplyBtn = document.getElementById("passengers-popover-apply");
+
+  function openPassengersPopover() {
+    if (!passengersPopover) return;
+    updatePopoverPricing();
+    passengersPopover.hidden = false;
+    passengersDisplayBtn?.setAttribute("aria-expanded", "true");
+    if (passengersChevron) passengersChevron.style.transform = "rotate(180deg)";
+  }
+
+  function closePassengersPopover() {
+    if (!passengersPopover || passengersPopover.hidden) return;
+    passengersPopover.hidden = true;
+    passengersDisplayBtn?.setAttribute("aria-expanded", "false");
+    if (passengersChevron) passengersChevron.style.transform = "";
+  }
+
+  passengersDisplayBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (passengersPopover?.hidden) {
+      openPassengersPopover();
+    } else {
+      closePassengersPopover();
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (passengersWidgetContainer && !passengersWidgetContainer.contains(e.target)) {
+      closePassengersPopover();
+    }
+  });
+
+  document.querySelectorAll("#passenger-tiers-list .tier-row").forEach((row) => {
+    const tierId = row.dataset.tierId;
+    const decBtn = row.querySelector(".tier-dec-btn");
+    const incBtn = row.querySelector(".tier-inc-btn");
+
+    decBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      selectedTierCounts[tierId] = Math.max(0, (selectedTierCounts[tierId] || 0) - 1);
+      updatePopoverPricing();
+    });
+
+    incBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      selectedTierCounts[tierId] = (selectedTierCounts[tierId] || 0) + 1;
+      updatePopoverPricing();
+    });
+  });
+
+  passengersApplyBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    applyPassengerSelection();
+    closePassengersPopover();
+  });
+
   /* Move a selection into the booking form and scroll to it. Used by every
      "Book" button and by the hero quote bar. */
-  function sendToBooking({ service, date, passengers } = {}) {
+  function sendToBooking({ service, date, passengers, price, tourId } = {}) {
     /* A reader who already sent one request and then tapped Book on another
        route would otherwise be scrolled to a confirmation panel for the
        previous journey. Put the form back first, keeping what they typed. */
@@ -551,13 +1058,15 @@
       );
       serviceField.value = match ? match.value : "Something else";
     }
+
+    const basePrice = price || (service ? TOUR_PRICING[service] : null) || 790;
+    updateActiveTour(tourId || service, basePrice);
+
     if (date) bookingDate?.set(date);
     if (passengers && passengersField) passengersField.value = passengers;
 
     /* Assigning to .value fires neither input nor change, so nothing so far
-       has told the form these fields were answered. Without this, a date
-       carried down from the hero quote bar lands underneath a live "Pick the
-       day you travel." */
+       has told the form these fields were answered. */
     refreshShownErrors();
 
     const target = document.getElementById("book");
@@ -580,9 +1089,30 @@
     );
   }
 
+  // Sync pricing if the customer manually changes the service dropdown
+  serviceField?.addEventListener("change", () => {
+    const selectedService = serviceField.value;
+    updateActiveTour(selectedService);
+  });
+
+  // Tour cards Book Now buttons
+  document.querySelectorAll(".tour-book-btn").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const card = button.closest(".tour-card");
+      const tourId = card?.dataset.tourId;
+      const service = button.dataset.tourBook;
+      const price = Number(button.dataset.tourPrice) || (tourId && TOURS_CONFIG[tourId]?.prices?.["car-1"]) || 790;
+      sendToBooking({ service, price, tourId });
+    });
+  });
+
   document.querySelectorAll("[data-book]").forEach((button) => {
     button.addEventListener("click", () => {
-      sendToBooking({ service: button.dataset.book });
+      const service = button.dataset.book;
+      const price = TOUR_PRICING[service] || 790;
+      sendToBooking({ service, price });
     });
   });
 
@@ -603,7 +1133,7 @@
     if (activeTourLightbox) {
       try {
         activeTourLightbox.close();
-      } catch (e) {}
+      } catch (e) { }
     }
     tourModal.classList.remove("is-active");
     tourModal.setAttribute("aria-hidden", "true");
@@ -617,7 +1147,7 @@
     if (activeTourLightbox) {
       try {
         activeTourLightbox.destroy();
-      } catch (e) {}
+      } catch (e) { }
       activeTourLightbox = null;
     }
     if (typeof GLightbox !== "undefined") {
@@ -743,6 +1273,15 @@
       if (document.body.classList.contains("glightbox-open")) {
         return;
       }
+      const rModal = document.getElementById("booking-receipt-modal");
+      if (rModal && !rModal.hidden) {
+        closeBookingReceiptModal();
+        return;
+      }
+      if (passengersPopover && !passengersPopover.hidden) {
+        closePassengersPopover();
+        return;
+      }
       if (tourModal?.classList.contains("is-active")) {
         closeTourPopup();
       }
@@ -782,10 +1321,9 @@
         : "This email address is incorrect, please try again.";
     },
     "f-passengers": (value) => {
-      const n = Number(value);
-      return Number.isInteger(n) && n >= 1 && n <= 4
+      return value && value.trim().length >= 3
         ? null
-        : "One car takes four passengers.";
+        : "Please select your passengers and vehicle.";
     },
     /* These two read what was typed, not a parsed value, so "did not read"
        and "left blank" stay separate sentences. Telling someone who typed a
@@ -889,22 +1427,42 @@
   }
 
   /* Compose the whole request as a WhatsApp message. Every field the reader
-     filled in travels with it, so John never has to ask a follow-up for
-     something that was already on the form. */
-  function whatsappRequestURL(data) {
+     filled in travels with it, including reference code and price. */
+  function whatsappRequestURL(data, ref, price) {
+    const travelDate = readableDate(parseDate(data.date)) || data.date;
+
+    let breakdownLines = [];
+    if (currentSelectionBreakdown && currentSelectionBreakdown.length > 0) {
+      breakdownLines = currentSelectionBreakdown.map(
+        (item) => `${item.count} x ${formatEuro(item.unitPrice)} ${item.label}`
+      );
+    } else {
+      breakdownLines = [`1 x ${price || data.price || "€790"} ${data.passengers || "01-04 passengers (1 car)"}`];
+    }
+
     const lines = [
-      "Booking request from the website",
-      `Service: ${data.service || "not specified"}`,
-      `Name: ${data.name || ""}`,
-      `Email: ${data.email || ""}`,
-      data.phone ? `Phone: ${data.phone}` : "",
-      `Date: ${data.date || ""} at ${data.time || ""}`,
-      `Passengers: ${data.passengers || ""}`,
-      `Pickup: ${data.pickup || ""}`,
-      `Drop-off: ${data.dropoff || ""}`,
-      data.flight ? `Flight: ${data.flight}` : "",
-      data.bags ? `Large bags: ${data.bags}` : "",
-      data.notes ? `Notes: ${data.notes}` : "",
+      `*Booking Request #${ref || "RW-WEB"}*`,
+      "RoamWise Ireland Chauffeur & Private Tours",
+      "",
+      "*Customer details*",
+      `• Name: ${data.name || ""}`,
+      `• Email: ${data.email || ""}`,
+      data.phone ? `• Phone: ${data.phone}` : "",
+      "",
+      "*Booking details*",
+      `• Service: ${data.service || "Not specified"}`,
+      `• Date & Time: ${travelDate || ""} at ${data.time || ""}`,
+      `• Vehicles & Passengers: ${data.passengers || ""}`,
+      `• Pickup: ${data.pickup || ""}`,
+      `• Drop-off: ${data.dropoff || ""}`,
+      data.flight ? `• Flight: ${data.flight}` : "",
+      data.bags ? `• Large Bags: ${data.bags}` : "",
+      data.notes ? `• Notes: ${data.notes}` : "",
+      "",
+      "*Payment details*",
+      `Subtotal: ${price || data.price || "€790"}`,
+      ...breakdownLines,
+      `Total: ${price || data.price || "€790"}`,
     ].filter(Boolean);
     return `${WHATSAPP_URL}?text=${encodeURIComponent(lines.join("\n"))}`;
   }
@@ -920,8 +1478,8 @@
 
   const SENT_SUMMARY = {
     service: (d) => d.service,
-    when: (d) => [readableDate(d.date), d.time].filter(Boolean).join(", "),
-    passengers: (d) => (d.passengers ? `${d.passengers} ${d.passengers === "1" ? "passenger" : "passengers"}` : ""),
+    when: (d) => [readableDate(parseDate(d.date)) || d.date, d.time].filter(Boolean).join(", "),
+    passengers: (d) => d.passengers || "01–04 passengers (1 car)",
     pickup: (d) => d.pickup,
     dropoff: (d) => d.dropoff,
   };
@@ -932,6 +1490,11 @@
     bookingForm.hidden = false;
     if (reset) {
       bookingForm.reset();
+      selectedTierCounts["car-1"] = 1;
+      selectedTierCounts["van-1"] = 0;
+      selectedTierCounts["van-car"] = 0;
+      selectedTierCounts["vans-2"] = 0;
+      applyPassengerSelection();
       ruledFields().forEach(clearFieldError);
       setStatus("");
     }
@@ -970,6 +1533,140 @@
     sentPanel.focus({ preventScroll: true });
   }
 
+  /* -------------------------------------------------------------------------
+     Booking Receipt / Summary Note Modal logic ("Nota ou Impressão")
+  ------------------------------------------------------------------------- */
+  const receiptModal = document.getElementById("booking-receipt-modal");
+  const receiptClose = document.getElementById("booking-receipt-close");
+  const receiptBackdrop = document.getElementById("booking-receipt-backdrop");
+  const receiptPrintBtn = document.getElementById("receipt-print-btn");
+  const receiptEditBtn = document.getElementById("receipt-edit-btn");
+  const receiptConfirmBtn = document.getElementById("receipt-confirm-whatsapp-btn");
+
+  let activeBookingData = null;
+  let activeBookingRef = "";
+
+  function closeBookingReceiptModal() {
+    if (!receiptModal) return;
+    receiptModal.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  function openBookingReceiptModal(data) {
+    if (!receiptModal) return;
+
+    activeBookingData = data;
+    activeBookingRef = "RW-" + Math.floor(10000 + Math.random() * 90000);
+
+    const refEl = document.getElementById("receipt-ref");
+    if (refEl) refEl.textContent = activeBookingRef;
+
+    const issuedEl = document.getElementById("receipt-issued");
+    if (issuedEl) {
+      issuedEl.textContent = new Date().toLocaleDateString("en-IE", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    }
+
+    const serviceEl = document.getElementById("receipt-service");
+    if (serviceEl) serviceEl.textContent = data.service || "Private Chauffeur Tour";
+
+    const whenEl = document.getElementById("receipt-when");
+    const travelDate = readableDate(parseDate(data.date)) || data.date;
+    if (whenEl) {
+      whenEl.innerHTML = `
+        <svg class="size-3.5 text-accent-deep" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        ${travelDate} at ${data.time || "TBD"}
+      `;
+    }
+
+    const passEl = document.getElementById("receipt-passengers");
+    if (passEl) {
+      passEl.innerHTML = `
+        <svg class="size-3.5 text-accent-deep" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        ${data.passengers || "01–04 passengers (1 car)"}
+      `;
+    }
+
+    const nameEl = document.getElementById("receipt-name");
+    if (nameEl) nameEl.textContent = data.name || "";
+
+    const emailEl = document.getElementById("receipt-email");
+    if (emailEl) emailEl.textContent = data.email || "";
+
+    const phoneEl = document.getElementById("receipt-phone");
+    if (phoneEl) phoneEl.textContent = data.phone || "Not specified";
+
+    const pickupEl = document.getElementById("receipt-pickup");
+    if (pickupEl) pickupEl.textContent = data.pickup || "";
+
+    const dropoffEl = document.getElementById("receipt-dropoff");
+    if (dropoffEl) dropoffEl.textContent = data.dropoff || "";
+
+    const flightEl = document.getElementById("receipt-flight");
+    if (flightEl) flightEl.textContent = data.flight ? `Flight: ${data.flight}` : "Flight: None";
+
+    const bagsEl = document.getElementById("receipt-bags");
+    if (bagsEl) bagsEl.textContent = data.bags ? `Large bags: ${data.bags}` : "Bags: Standard";
+
+    const notesEl = document.getElementById("receipt-notes");
+    if (notesEl) notesEl.textContent = data.notes || "None";
+
+    const subtotalEl = document.getElementById("receipt-subtotal");
+    if (subtotalEl) subtotalEl.textContent = data.price || "€790";
+
+    const itemsListEl = document.getElementById("receipt-items-list");
+    if (itemsListEl) {
+      if (currentSelectionBreakdown && currentSelectionBreakdown.length > 0) {
+        itemsListEl.innerHTML = currentSelectionBreakdown
+          .map(
+            (item) => `
+            <div class="flex items-center justify-between py-1">
+              <span class="text-ink font-medium">${item.count} x ${formatEuro(item.unitPrice)} ${item.label}</span>
+              <span class="font-bold text-ink font-mono">${formatEuro(item.subtotal)}</span>
+            </div>`
+          )
+          .join("");
+      } else {
+        itemsListEl.innerHTML = `
+          <div class="flex items-center justify-between py-1">
+            <span class="text-ink font-medium">1 x ${data.price || "€790"} ${data.passengers || "01-04 passengers (1 car)"}</span>
+            <span class="font-bold text-ink font-mono">${data.price || "€790"}</span>
+          </div>`;
+      }
+    }
+
+    const totalEl = document.getElementById("receipt-total");
+    if (totalEl) totalEl.textContent = data.price || "€790";
+
+    receiptModal.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  receiptClose?.addEventListener("click", closeBookingReceiptModal);
+  receiptBackdrop?.addEventListener("click", closeBookingReceiptModal);
+  receiptEditBtn?.addEventListener("click", closeBookingReceiptModal);
+
+  receiptPrintBtn?.addEventListener("click", () => {
+    window.print();
+  });
+
+  receiptConfirmBtn?.addEventListener("click", () => {
+    if (!activeBookingData) return;
+    const url = whatsappRequestURL(activeBookingData, activeBookingRef, activeBookingData.price);
+    closeBookingReceiptModal();
+
+    /* Opened without the `noopener` feature string on purpose: browsers
+       return null for that form, and null is the only signal a popup
+       blocker gives us. The reference is severed straight afterwards. */
+    const opened = window.open(url, "_blank");
+    if (opened) opened.opener = null;
+
+    showSent(activeBookingData, url, Boolean(opened));
+  });
+
   if (bookingForm && sentPanel) {
     bookingForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -991,15 +1688,8 @@
       setStatus("");
 
       const data = Object.fromEntries(new FormData(bookingForm).entries());
-      const url = whatsappRequestURL(data);
-
-      /* Opened without the `noopener` feature string on purpose: browsers
-         return null for that form, and null is the only signal a popup
-         blocker gives us. The reference is severed straight afterwards. */
-      const opened = window.open(url, "_blank");
-      if (opened) opened.opener = null;
-
-      showSent(data, url, Boolean(opened));
+      // Prompt user with booking summary note / receipt before sending to WhatsApp
+      openBookingReceiptModal(data);
     });
 
     sentPanel.querySelector("[data-sent-restart]")?.addEventListener("click", () => {

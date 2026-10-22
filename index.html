@@ -23,7 +23,7 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-variable-latin.woff2" crossorigin />
   <link rel="preload" as="image" href="assets/img/Roamwise_LogoBranco_Horizontal@2x.png" />
   <link rel="preload" as="image" href="assets/img/Roamwise_Logo_Horizontal@2x.png" />
-  <link rel="stylesheet" href="dist/styles.css?v=2" />
+  <link rel="stylesheet" href="dist/styles.css?v=4" />
   <link rel="stylesheet" href="assets/vendor/glightbox/glightbox.min.css" />
 
 
@@ -499,277 +499,519 @@
         <!-- Tours Grid (Below tabs, centered, equal sizes, responsive) -->
         <div class="reveal mt-12 sm:mt-16">
           <div id="tour-grid" class="tours-grid">
-                <!-- 1. Cliffs of Moher & Galway (Dublin) -->
-                <article data-tour-city="dublin"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img
-                    src="assets/img/Dublin/Cliffs%20of%20moher%20e%20galway/aerial-panorama-scenic-cliffs-moher-ireland.jpg"
-                    alt="The Cliffs of Moher dropping into the Atlantic" width="1600" height="1067" loading="lazy"
-                    decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">
-                      Dublin
-                      <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">12h
-                        30m</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Private Tour: Cliffs of Moher &amp; Galway</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      The full west coast run. Burren limestone, the cliffs themselves, then Galway city
-                      before the drive back.
-                    </p>
-                    <button type="button" data-tour-popup="components/popups/popup-dublin-cliffs-moher.html"
-                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
-                      Read More
-                    </button>
-                  </div>
-                </article>
+            <!-- 1. Cliffs of Moher & Galway (Dublin) -->
+            <article data-tour-city="dublin" data-tour-id="cliffs-moher-galway"
+              class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
+              <img
+                src="assets/img/Dublin/Cliffs%20of%20moher%20e%20galway/aerial-panorama-scenic-cliffs-moher-ireland.jpg"
+                alt="The Cliffs of Moher dropping into the Atlantic" width="1600" height="1067" loading="lazy"
+                decoding="async"
+                class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
+              <div class="absolute inset-0 -z-10"
+                style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
+                aria-hidden="true"></div>
+              <div class="p-6 text-on-image sm:p-8">
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="label text-on-image/70">Dublin</p>
+                </div>
+                <h3 class="mt-2 text-h3">Private Tour: Cliffs of Moher &amp; Galway</h3>
+                <p class="mt-2 line-clamp-2 text-sm text-on-image/80">
+                  The full west coast run. Burren limestone, the cliffs themselves, then Galway city
+                  before the drive back.
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    <svg class="size-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Duration: <strong class="font-semibold text-white tour-duration-value">12h 30m</strong>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-accent/35 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    Price: <strong class="font-bold text-accent-light tour-price-value">From €790</strong>
+                  </span>
+                </div>
+                <div class="mt-5 flex flex-wrap items-center gap-2.5">
+                  <button type="button" data-tour-popup="components/popups/popup-dublin-cliffs-moher.html"
+                    class="tour-popup-btn rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition-colors duration-150 hover:bg-white/90">
+                    Read More
+                  </button>
+                  <button type="button" data-tour-book="Dublin • Private Tour: Cliffs of Moher &amp; Galway."
+                    data-tour-price="790"
+                    class="tour-book-btn inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink shadow-sm transition-colors duration-150 hover:bg-accent-hi hover:text-white">
+                    Book Now
+                    <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2.2"
+                      aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
 
-                <!-- 2. Belfast, Titanic & Giants (Dublin) -->
-                <article data-tour-city="dublin"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img
-                    src="assets/img/Dublin/Private%20tour%20-%20belfast,%20titanic%20e%20giants/titanic-belfast-northern-ireland-uk.jpg"
-                    alt="The basalt columns of the Giant's Causeway and Titanic Belfast" width="1600" height="1067"
-                    loading="lazy" decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">
-                      Dublin
-                      <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">13h</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Private Tour: Belfast, Titanic &amp; Giants</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      North across the border for the Titanic Quarter and the Giant's Causeway.
-                    </p>
-                    <button type="button" data-tour-popup="components/popups/popup-dublin-belfast-titanic.html"
-                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
-                      Read More
-                    </button>
-                  </div>
-                </article>
+            <!-- 2. Belfast, Titanic & Giants (Dublin) -->
+            <article data-tour-city="dublin" data-tour-id="belfast-titanic-giants"
+              class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
+              <img
+                src="assets/img/Dublin/Private%20tour%20-%20belfast,%20titanic%20e%20giants/titanic-belfast-northern-ireland-uk.jpg"
+                alt="The basalt columns of the Giant's Causeway and Titanic Belfast" width="1600" height="1067"
+                loading="lazy" decoding="async"
+                class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
+              <div class="absolute inset-0 -z-10"
+                style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
+                aria-hidden="true"></div>
+              <div class="p-6 text-on-image sm:p-8">
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="label text-on-image/70">Dublin</p>
+                </div>
+                <h3 class="mt-2 text-h3">Private Tour: Belfast, Titanic &amp; Giants</h3>
+                <p class="mt-2 line-clamp-2 text-sm text-on-image/80">
+                  North across the border for the Titanic Quarter and the Giant's Causeway.
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    <svg class="size-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Duration: <strong class="font-semibold text-white tour-duration-value">13h</strong>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-accent/35 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    Price: <strong class="font-bold text-accent-light tour-price-value">From €840</strong>
+                  </span>
+                </div>
+                <div class="mt-5 flex flex-wrap items-center gap-2.5">
+                  <button type="button" data-tour-popup="components/popups/popup-dublin-belfast-titanic.html"
+                    class="tour-popup-btn rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition-colors duration-150 hover:bg-white/90">
+                    Read More
+                  </button>
+                  <button type="button" data-tour-book="Dublin • Private Tour: Belfast, Titanic &amp; Giants."
+                    data-tour-price="840"
+                    class="tour-book-btn inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink shadow-sm transition-colors duration-150 hover:bg-accent-hi hover:text-white">
+                    Book Now
+                    <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2.2"
+                      aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
 
-                <!-- 3. Wicklow & Glendalough Private Tour (Dublin) -->
-                <article data-tour-city="dublin"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img
-                    src="assets/img/Dublin/Wicklow%20e%20Glendalough%20private%20tour/aerial-shot-wicklow-mountains-with-lake-sky-background-ireland.jpg"
-                    alt="The upper lake at Glendalough under low mist in the Wicklow mountains" width="1600"
-                    height="1067" loading="lazy" decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">
-                      Dublin
-                      <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">7h</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Wicklow &amp; Glendalough Private Tour</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      Mountain roads, the monastic city and the upper lake. The shortest way to see the
-                      countryside properly.
-                    </p>
-                    <button type="button" data-tour-popup="components/popups/popup-dublin-wicklow-glendalough.html"
-                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
-                      Read More
-                    </button>
-                  </div>
-                </article>
+            <!-- 3. Wicklow & Glendalough Private Tour (Dublin) -->
+            <article data-tour-city="dublin" data-tour-id="wicklow-glendalough"
+              class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
+              <img
+                src="assets/img/Dublin/Wicklow%20e%20Glendalough%20private%20tour/aerial-shot-wicklow-mountains-with-lake-sky-background-ireland.jpg"
+                alt="The upper lake at Glendalough under low mist in the Wicklow mountains" width="1600" height="1067"
+                loading="lazy" decoding="async"
+                class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
+              <div class="absolute inset-0 -z-10"
+                style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
+                aria-hidden="true"></div>
+              <div class="p-6 text-on-image sm:p-8">
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="label text-on-image/70">Dublin</p>
+                </div>
+                <h3 class="mt-2 text-h3">Wicklow &amp; Glendalough Private Tour</h3>
+                <p class="mt-2 line-clamp-2 text-sm text-on-image/80">
+                  Mountain roads, the monastic city and the upper lake. The shortest way to see the
+                  countryside properly.
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    <svg class="size-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Duration: <strong class="font-semibold text-white tour-duration-value">7h</strong>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-accent/35 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    Price: <strong class="font-bold text-accent-light tour-price-value">From €630</strong>
+                  </span>
+                </div>
+                <div class="mt-5 flex flex-wrap items-center gap-2.5">
+                  <button type="button" data-tour-popup="components/popups/popup-dublin-wicklow-glendalough.html"
+                    class="tour-popup-btn rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition-colors duration-150 hover:bg-white/90">
+                    Read More
+                  </button>
+                  <button type="button" data-tour-book="Dublin • Wicklow &amp; Glendalough Private Day Tour."
+                    data-tour-price="630"
+                    class="tour-book-btn inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink shadow-sm transition-colors duration-150 hover:bg-accent-hi hover:text-white">
+                    Book Now
+                    <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2.2"
+                      aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
 
-                <!-- 4. Dublin: Private Chauffeur Tour (Dublin) -->
-                <article data-tour-city="dublin"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img
-                    src="assets/img/Dublin/Dublin%20-%20private%20chauffeur%20tour/view-dublin-with-ha-penny-bridge-ireland.jpg"
-                    alt="View of Dublin with Ha'penny Bridge across the Liffey" width="1600" height="1067"
-                    loading="lazy" decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">
-                      Dublin
-                      <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">4h
-                        or 8h</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Dublin: Private Chauffeur Tour</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      Half a day with the car and John at your disposal. You pick the stops as you go.
-                    </p>
-                    <button type="button" data-tour-popup="components/popups/popup-dublin-chauffeur.html"
-                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
-                      Read More
-                    </button>
-                  </div>
-                </article>
+            <!-- 4. Dublin: Private Chauffeur Tour (Dublin) -->
+            <article data-tour-city="dublin" data-tour-id="dublin-chauffeur"
+              class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
+              <img
+                src="assets/img/Dublin/Dublin%20-%20private%20chauffeur%20tour/view-dublin-with-ha-penny-bridge-ireland.jpg"
+                alt="View of Dublin with Ha'penny Bridge across the Liffey" width="1600" height="1067" loading="lazy"
+                decoding="async"
+                class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
+              <div class="absolute inset-0 -z-10"
+                style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
+                aria-hidden="true"></div>
+              <div class="p-6 text-on-image sm:p-8">
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="label text-on-image/70">Dublin</p>
+                </div>
+                <h3 class="mt-2 text-h3">Dublin: Private Chauffeur Tour</h3>
+                <p class="mt-2 line-clamp-2 text-sm text-on-image/80">
+                  Half a day with the car and John at your disposal. You pick the stops as you go.
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    <svg class="size-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Duration: <strong class="font-semibold text-white tour-duration-value">4h or 8h</strong>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-accent/35 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    Price: <strong class="font-bold text-accent-light tour-price-value">From €540</strong>
+                  </span>
+                </div>
+                <div class="mt-5 flex flex-wrap items-center gap-2.5">
+                  <button type="button" data-tour-popup="components/popups/popup-dublin-chauffeur.html"
+                    class="tour-popup-btn rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition-colors duration-150 hover:bg-white/90">
+                    Read More
+                  </button>
+                  <button type="button" data-tour-book="Dublin • Dublin: Private Chauffeur Tour." data-tour-price="540"
+                    class="tour-book-btn inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink shadow-sm transition-colors duration-150 hover:bg-accent-hi hover:text-white">
+                    Book Now
+                    <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2.2"
+                      aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
 
-                <!-- 5. Giant's Causeway – Private Guide Bus Tour (Belfast) -->
-                <article data-tour-city="belfast"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img
-                    src="assets/img/Belfast/Giant’s%20Causeway/giants-causeway-basalt-columns-landmark-ireland-natural-wonder-coast.jpg"
-                    alt="Basalt columns on the Northern Irish coast" width="800" height="533" loading="lazy"
-                    decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">Belfast <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">8h</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Giant's Causeway – Private Guide Bus Tour</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      Experience Northern Ireland's famous coastline and the legendary basalt columns.
-                    </p>
-                    <button type="button" data-tour-popup="components/popups/popup-belfast-giants-causeway.html"
-                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">
-                      Read More
-                    </button>
-                  </div>
-                </article>
+            <!-- 5. Giant's Causeway – Private Guide Bus Tour (Belfast) -->
+            <article data-tour-city="belfast" data-tour-id="giants-causeway"
+              class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
+              <img
+                src="assets/img/Belfast/Giant’s%20Causeway/giants-causeway-basalt-columns-landmark-ireland-natural-wonder-coast.jpg"
+                alt="Basalt columns on the Northern Irish coast" width="800" height="533" loading="lazy"
+                decoding="async"
+                class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
+              <div class="absolute inset-0 -z-10"
+                style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
+                aria-hidden="true"></div>
+              <div class="p-6 text-on-image sm:p-8">
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="label text-on-image/70">Belfast</p>
+                </div>
+                <h3 class="mt-2 text-h3">Giant's Causeway – Private Guide Bus Tour</h3>
+                <p class="mt-2 line-clamp-2 text-sm text-on-image/80">
+                  Experience Northern Ireland's famous coastline and the legendary basalt columns.
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    <svg class="size-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Duration: <strong class="font-semibold text-white tour-duration-value">8h</strong>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-accent/35 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    Price: <strong class="font-bold text-accent-light tour-price-value">From €680</strong>
+                  </span>
+                </div>
+                <div class="mt-5 flex flex-wrap items-center gap-2.5">
+                  <button type="button" data-tour-popup="components/popups/popup-belfast-giants-causeway.html"
+                    class="tour-popup-btn rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition-colors duration-150 hover:bg-white/90">
+                    Read More
+                  </button>
+                  <button type="button" data-tour-book="Belfast • Giant's Causeway – Private Guide Bus Tour."
+                    data-tour-price="680"
+                    class="tour-book-btn inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink shadow-sm transition-colors duration-150 hover:bg-accent-hi hover:text-white">
+                    Book Now
+                    <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2.2"
+                      aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
 
-                <!-- 6. Belfast City – Private Chauffeur Day Tour (Belfast) -->
-                <article data-tour-city="belfast"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img
-                    src="assets/img/Belfast/Belfast%20city%20–%20private%20chauffeur%20day%20tour/outdoor-view-famous-belfast-city-hall-belfast-northern-ireland.jpg"
-                    alt="Outdoor view of Belfast City Hall" width="800" height="533" loading="lazy" decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">Belfast <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">7h</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Belfast City – Private Chauffeur Day Tour</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      A private day with a knowledgeable local driver exploring Belfast's historic quarters.
-                    </p>
-                    <button type="button" data-tour-popup="components/popups/popup-belfast-city-chauffeur.html"
-                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">
-                      Read More
-                    </button>
-                  </div>
-                </article>
+            <!-- 6. Belfast City – Private Chauffeur Day Tour (Belfast) -->
+            <article data-tour-city="belfast" data-tour-id="belfast-city"
+              class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
+              <img
+                src="assets/img/Belfast/Belfast%20city%20–%20private%20chauffeur%20day%20tour/outdoor-view-famous-belfast-city-hall-belfast-northern-ireland.jpg"
+                alt="Outdoor view of Belfast City Hall" width="800" height="533" loading="lazy" decoding="async"
+                class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
+              <div class="absolute inset-0 -z-10"
+                style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
+                aria-hidden="true"></div>
+              <div class="p-6 text-on-image sm:p-8">
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="label text-on-image/70">Belfast</p>
+                </div>
+                <h3 class="mt-2 text-h3">Belfast City – Private Chauffeur Day Tour</h3>
+                <p class="mt-2 line-clamp-2 text-sm text-on-image/80">
+                  A private day with a knowledgeable local driver exploring Belfast's historic quarters.
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    <svg class="size-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Duration: <strong class="font-semibold text-white tour-duration-value">7h</strong>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-accent/35 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    Price: <strong class="font-bold text-accent-light tour-price-value">From €590</strong>
+                  </span>
+                </div>
+                <div class="mt-5 flex flex-wrap items-center gap-2.5">
+                  <button type="button" data-tour-popup="components/popups/popup-belfast-city-chauffeur.html"
+                    class="tour-popup-btn rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition-colors duration-150 hover:bg-white/90">
+                    Read More
+                  </button>
+                  <button type="button" data-tour-book="Belfast • Belfast City – Private Chauffeur Day Tour."
+                    data-tour-price="590"
+                    class="tour-book-btn inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink shadow-sm transition-colors duration-150 hover:bg-accent-hi hover:text-white">
+                    Book Now
+                    <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2.2"
+                      aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
 
-                <!-- 7. Game of Thrones Private Tour (Belfast) -->
-                <article data-tour-city="belfast"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img
-                    src="assets/img/Belfast/Game%20of%20Thrones%20Private%20Tour/dark-hedges-northern-ireland-united-kingdom.jpg"
-                    alt="Game of Thrones filming locations - The Dark Hedges" width="800" height="533" loading="lazy"
-                    decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">Belfast <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">8h</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Game of Thrones Private Tour</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      Explore Northern Ireland’s iconic Game of Thrones filming locations on a private guided tour.
-                    </p>
-                    <button type="button" data-tour-popup="components/popups/popup-belfast-game-of-thrones.html"
-                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">
-                      Read More
-                    </button>
-                  </div>
-                </article>
+            <!-- 7. Game of Thrones Private Tour (Belfast) -->
+            <article data-tour-city="belfast" data-tour-id="game-of-thrones"
+              class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
+              <img
+                src="assets/img/Belfast/Game%20of%20Thrones%20Private%20Tour/dark-hedges-northern-ireland-united-kingdom.jpg"
+                alt="Game of Thrones filming locations - The Dark Hedges" width="800" height="533" loading="lazy"
+                decoding="async"
+                class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
+              <div class="absolute inset-0 -z-10"
+                style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
+                aria-hidden="true"></div>
+              <div class="p-6 text-on-image sm:p-8">
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="label text-on-image/70">Belfast</p>
+                </div>
+                <h3 class="mt-2 text-h3">Game of Thrones Private Tour</h3>
+                <p class="mt-2 line-clamp-2 text-sm text-on-image/80">
+                  Explore Northern Ireland’s iconic Game of Thrones filming locations on a private guided tour.
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    <svg class="size-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Duration: <strong class="font-semibold text-white tour-duration-value">8h</strong>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-accent/35 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    Price: <strong class="font-bold text-accent-light tour-price-value">From €690</strong>
+                  </span>
+                </div>
+                <div class="mt-5 flex flex-wrap items-center gap-2.5">
+                  <button type="button" data-tour-popup="components/popups/popup-belfast-game-of-thrones.html"
+                    class="tour-popup-btn rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition-colors duration-150 hover:bg-white/90">
+                    Read More
+                  </button>
+                  <button type="button" data-tour-book="Belfast • Game of Thrones Private Tour." data-tour-price="690"
+                    class="tour-book-btn inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink shadow-sm transition-colors duration-150 hover:bg-accent-hi hover:text-white">
+                    Book Now
+                    <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2.2"
+                      aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
 
-                <!-- 8. Titanic Trail Walking Tour (Cork) -->
-                <article data-tour-city="cork"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img src="assets/img/Cork/Titanic%20trail%20walking%20tour/Titanic%20trail%20walking%20tour%20%20.png"
-                    alt="Cobh waterfront on the Titanic trail walking route" width="1600" height="1067" loading="lazy"
-                    decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">
-                      Cork
-                      <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">1h
-                        30m</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Titanic Trail Walking Tour</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      A walking route through the stories and landmarks that connect the city to the Titanic trail.
-                    </p>
-                    <button type="button" data-tour-popup="components/popups/popup-cork-titanic-trail.html"
-                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-150 hover:bg-accent-hi">
-                      Read More
-                    </button>
-                  </div>
-                </article>
+            <!-- 8. Titanic Trail Walking Tour (Cork) -->
+            <article data-tour-city="cork" data-tour-id="titanic-trail"
+              class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
+              <img src="assets/img/Cork/Titanic%20trail%20walking%20tour/Titanic%20trail%20walking%20tour%20%20.png"
+                alt="Cobh waterfront on the Titanic trail walking route" width="1600" height="1067" loading="lazy"
+                decoding="async"
+                class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
+              <div class="absolute inset-0 -z-10"
+                style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
+                aria-hidden="true"></div>
+              <div class="p-6 text-on-image sm:p-8">
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="label text-on-image/70">Cork</p>
+                </div>
+                <h3 class="mt-2 text-h3">Titanic Trail Walking Tour</h3>
+                <p class="mt-2 line-clamp-2 text-sm text-on-image/80">
+                  A walking route through the stories and landmarks that connect the city to the Titanic trail.
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    <svg class="size-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Duration: <strong class="font-semibold text-white tour-duration-value">1h 30m</strong>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-accent/35 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    Price: <strong class="font-bold text-accent-light tour-price-value">From €160</strong>
+                  </span>
+                </div>
+                <div class="mt-5 flex flex-wrap items-center gap-2.5">
+                  <button type="button" data-tour-popup="components/popups/popup-cork-titanic-trail.html"
+                    class="tour-popup-btn rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition-colors duration-150 hover:bg-white/90">
+                    Read More
+                  </button>
+                  <button type="button" data-tour-book="Cork • Titanic Trail Walking Tour." data-tour-price="160"
+                    class="tour-book-btn inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink shadow-sm transition-colors duration-150 hover:bg-accent-hi hover:text-white">
+                    Book Now
+                    <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2.2"
+                      aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
 
-                <!-- 9. Ring of Kerry – Private Day Tour (Cork) -->
-                <article data-tour-city="cork"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img
-                    src="assets/img/Cork/Ring%20of%20Kerry%20–%20Provate%20day%20tour/ring-kerry-wild-atlantic-way-republic-ireland.jpg"
-                    alt="Scenic route along the Ring of Kerry" width="800" height="533" loading="lazy" decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">Cork <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">8h</span>
-                    </p>
-                    <h3 class="mt-2 text-h3">Ring of Kerry – Private Day Tour</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      Rugged coastlines, mountain passes, and colourful fishing villages.
-                    </p>
-                    <button type="button" data-tour-popup="components/popups/popup-cork-ring-of-kerry.html"
-                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">
-                      Read More
-                    </button>
-                  </div>
-                </article>
+            <!-- 9. Ring of Kerry – Private Day Tour (Cork) -->
+            <article data-tour-city="cork" data-tour-id="ring-of-kerry"
+              class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
+              <img
+                src="assets/img/Cork/Ring%20of%20Kerry%20–%20Provate%20day%20tour/ring-kerry-wild-atlantic-way-republic-ireland.jpg"
+                alt="Scenic route along the Ring of Kerry" width="800" height="533" loading="lazy" decoding="async"
+                class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
+              <div class="absolute inset-0 -z-10"
+                style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
+                aria-hidden="true"></div>
+              <div class="p-6 text-on-image sm:p-8">
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="label text-on-image/70">Cork</p>
+                </div>
+                <h3 class="mt-2 text-h3">Ring of Kerry – Private Day Tour</h3>
+                <p class="mt-2 line-clamp-2 text-sm text-on-image/80">
+                  Rugged coastlines, mountain passes, and colourful fishing villages.
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    <svg class="size-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Duration: <strong class="font-semibold text-white tour-duration-value">8h</strong>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-accent/35 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    Price: <strong class="font-bold text-accent-light tour-price-value">From €720</strong>
+                  </span>
+                </div>
+                <div class="mt-5 flex flex-wrap items-center gap-2.5">
+                  <button type="button" data-tour-popup="components/popups/popup-cork-ring-of-kerry.html"
+                    class="tour-popup-btn rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition-colors duration-150 hover:bg-white/90">
+                    Read More
+                  </button>
+                  <button type="button" data-tour-book="Cork • Ring of Kerry – Private Day Tour." data-tour-price="720"
+                    class="tour-book-btn inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink shadow-sm transition-colors duration-150 hover:bg-accent-hi hover:text-white">
+                    Book Now
+                    <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2.2"
+                      aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
 
-                <!-- 10. Cliffs of Moher from Galway – Private Tour (Galway) -->
-                <article data-tour-city="galway"
-                  class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
-                  <img
-                    src="assets/img/Galway/Cliffs%20of%20Moher%20from%20Galway%20–%20privete%20tour/aerial-panorama-scenic-cliffs-moher-ireland.jpg"
-                    alt="Cliffs of Moher dramatic aerial panorama" width="800" height="533" loading="lazy"
-                    decoding="async"
-                    class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
-                  <div class="absolute inset-0 -z-10"
-                    style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
-                    aria-hidden="true"></div>
-                  <div class="p-6 text-on-image sm:p-8">
-                    <p class="label inline-flex items-center gap-2 text-on-image/70">Galway <span
-                        class="rounded-full border border-on-image/25 bg-on-image/20 px-3 py-1 text-xs font-medium normal-case tracking-normal text-on-image">1h
-                        30m</span></p>
-                    <h3 class="mt-2 text-h3">Cliffs of Moher from Galway – Private Tour</h3>
-                    <p class="mt-2 line-clamp-3 text-sm text-on-image/80">
-                      The most direct and spectacular route to the Cliffs of Moher and the Burren from Galway.
-                    </p>
-                    <button type="button" data-tour-popup="components/popups/popup-galway-cliffs-moher.html"
-                      class="tour-popup-btn mt-5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hi">
-                      Read More
-                    </button>
-                  </div>
-                </article>
+            <!-- 10. Cliffs of Moher from Galway – Private Tour (Galway) -->
+            <article data-tour-city="galway" data-tour-id="galway-cliffs-moher"
+              class="tour-card group relative isolate flex shrink-0 flex-col justify-end overflow-hidden rounded-panel">
+              <img
+                src="assets/img/Galway/Cliffs%20of%20Moher%20from%20Galway%20–%20privete%20tour/aerial-panorama-scenic-cliffs-moher-ireland.jpg"
+                alt="Cliffs of Moher dramatic aerial panorama" width="800" height="533" loading="lazy" decoding="async"
+                class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]" />
+              <div class="absolute inset-0 -z-10"
+                style="background: linear-gradient(to top, oklch(0.15 0.018 250 / 0.95) 20%, oklch(0.15 0.018 250 / 0.45) 65%, oklch(0.15 0.018 250 / 0.1) 100%)"
+                aria-hidden="true"></div>
+              <div class="p-6 text-on-image sm:p-8">
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="label text-on-image/70">Galway</p>
+                </div>
+                <h3 class="mt-2 text-h3">Cliffs of Moher from Galway – Private Tour</h3>
+                <p class="mt-2 line-clamp-2 text-sm text-on-image/80">
+                  The most direct and spectacular route to the Cliffs of Moher and the Burren from Galway.
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    <svg class="size-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Duration: <strong class="font-semibold text-white tour-duration-value">1h 30m</strong>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-accent/35 bg-black/40 px-2.5 py-1 font-medium text-white/90 backdrop-blur-sm">
+                    Price: <strong class="font-bold text-accent-light tour-price-value">From €490</strong>
+                  </span>
+                </div>
+                <div class="mt-5 flex flex-wrap items-center gap-2.5">
+                  <button type="button" data-tour-popup="components/popups/popup-galway-cliffs-moher.html"
+                    class="tour-popup-btn rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition-colors duration-150 hover:bg-white/90">
+                    Read More
+                  </button>
+                  <button type="button" data-tour-book="Galway • Cliffs of Moher from Galway – Private Tour."
+                    data-tour-price="490"
+                    class="tour-book-btn inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink shadow-sm transition-colors duration-150 hover:bg-accent-hi hover:text-white">
+                    Book Now
+                    <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2.2"
+                      aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </div>
@@ -917,10 +1159,6 @@
                         <optgroup label="Airport transfers, 4 seater">
                           <option>Dublin Airport to Dublin City Centre.</option>
                           <option>Dublin City Centre to Dublin Airport.</option>
-                          <option>Cork Airport to Cork City Centre.</option>
-                          <option>Cork City Centre to Cork Airport.</option>
-                          <option>Belfast Airport to Belfast City Centre.</option>
-                          <option>Belfast City Centre to Belfast Airport.</option>
                         </optgroup>
                         <optgroup label="Private tours">
                           <option>Dublin • Private Tour: Cliffs of Moher &amp; Galway.</option>
@@ -932,10 +1170,9 @@
                           <option>Belfast • Game of Thrones Private Tour.</option>
                           <option>Cork • Private Tour to Gougane Barra and Glengarriff.</option>
                           <option>Cork • Ring of Kerry – Private Day Tour.</option>
-                          <option>Cork • Titanic Trail Walking Tour.</option>
                           <option>Galway • Cliffs of Moher from Galway – Private Tour.</option>
                         </optgroup>
-                        <option value="Something else">Something else, tell John where</option>
+
                       </select>
                       <svg viewBox="0 0 24 24"
                         class="pointer-events-none absolute top-1/2 right-3.5 size-4 -translate-y-1/2 text-faint"
@@ -969,25 +1206,180 @@
                       class="field mt-1.5" />
                   </div>
 
-                  <div>
-                    <label for="f-passengers" class="label block text-faint">Passengers</label>
+                  <div class="relative" id="passengers-widget-container">
+                    <label for="f-passengers-display" class="label block text-faint">Passengers</label>
                     <div class="relative mt-1.5">
-                      <select id="f-passengers" name="passengers" required aria-describedby="e-passengers"
-                        class="field field-select tnum">
-                        <option value="1">01-04 passengers (1 car)</option>
-                        <option value="2">05-07 passengers (1 van)</option>
-                        <option value="3">08-11 passengers (1 van + 1 car)</option>
-                        <option value="4">12-14 passengers (1 van)</option>
-                      </select>
-                      <svg viewBox="0 0 24 24"
-                        class="pointer-events-none absolute top-1/2 right-3.5 size-4 -translate-y-1/2 text-faint"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
+                      <button type="button" id="f-passengers-display" aria-haspopup="dialog" aria-expanded="false"
+                        aria-controls="passengers-popover"
+                        class="field field-select flex w-full items-center justify-between text-left text-ink transition-colors hover:border-field focus:border-field focus:outline-none">
+                        <span id="passengers-display-label" class="truncate font-medium">01–04 passengers (1 car)</span>
+                        <span class="flex items-center gap-2 shrink-0 ml-2">
+                          <span id="passengers-display-price"
+                            class="rounded-full bg-accent/20 px-2.5 py-0.5 text-xs font-bold text-accent-deep">€790</span>
+                          <svg viewBox="0 0 24 24" class="size-4 text-faint transition-transform duration-200"
+                            id="passengers-chevron" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="m6 9 6 6 6-6" />
+                          </svg>
+                        </span>
+                      </button>
                     </div>
+
+                    <!-- Hidden inputs preserving standard FormData and validation -->
+                    <input type="hidden" id="f-passengers" name="passengers" value="01–04 passengers (1 car)" />
+                    <input type="hidden" id="f-price" name="price" value="€790" />
+                    <input type="hidden" id="f-price-num" name="price_num" value="790" />
                     <p id="e-passengers" class="mt-1.5 hidden text-sm text-danger"></p>
-                    <!-- <p class="mt-1.5 text-sm text-faint">Four is the limit of one car.</p> -->
+
+                    <!-- Passengers Popover matching user attachment (Irish English) -->
+                    <div id="passengers-popover" hidden role="dialog" aria-label="Select passengers and vehicles"
+                      class="absolute left-0 right-0 z-40 mt-2 rounded-2xl border border-line bg-raised p-4 sm:p-5 shadow-2xl transition-all">
+
+                      <!-- Top hint -->
+                      <div class="pb-3 border-b border-line/70">
+                        <p class="text-xs font-semibold text-muted tracking-wide" id="passengers-popover-title">
+                          Select participants (up to 14 passengers)
+                        </p>
+                      </div>
+
+                      <!-- Tier list -->
+                      <div class="divide-y divide-line/60 py-1" id="passenger-tiers-list">
+
+                        <!-- Tier 1: 01-04 passengers (1 car) -->
+                        <div class="flex items-center justify-between py-3.5 tier-row" data-tier-id="car-1"
+                          data-ratio="1.0" data-label="01-04 passengers (1 car)">
+                          <div>
+                            <p class="text-sm font-semibold text-ink">01-04 passengers (1 car)</p>
+                            <p class="text-base font-bold text-ink mt-0.5 tier-price-label">€790</p>
+                          </div>
+                          <div
+                            class="flex items-center rounded-lg border border-line bg-surface overflow-hidden shadow-xs">
+                            <button type="button"
+                              class="tier-counter-btn tier-dec-btn flex size-9 items-center justify-center text-ink transition-colors hover:bg-sunken disabled:opacity-30 disabled:pointer-events-none"
+                              aria-label="Decrease 01-04 passengers">
+                              <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </button>
+                            <span class="w-9 text-center text-sm font-bold text-ink tier-count" data-tier-count>1</span>
+                            <button type="button"
+                              class="tier-counter-btn tier-inc-btn flex size-9 items-center justify-center text-ink transition-colors hover:bg-sunken disabled:opacity-30 disabled:pointer-events-none"
+                              aria-label="Increase 01-04 passengers">
+                              <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+
+                        <!-- Tier 2: 04-07 passengers (1 van) -->
+                        <div class="flex items-center justify-between py-3.5 tier-row" data-tier-id="van-1"
+                          data-ratio="1.633" data-label="04-07 passengers (1 van)">
+                          <div>
+                            <p class="text-sm font-semibold text-ink">04-07 passengers (1 van)</p>
+                            <p class="text-base font-bold text-ink mt-0.5 tier-price-label">€1,290</p>
+                          </div>
+                          <div
+                            class="flex items-center rounded-lg border border-line bg-surface overflow-hidden shadow-xs">
+                            <button type="button"
+                              class="tier-counter-btn tier-dec-btn flex size-9 items-center justify-center text-ink transition-colors hover:bg-sunken disabled:opacity-30 disabled:pointer-events-none"
+                              aria-label="Decrease 04-07 passengers">
+                              <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </button>
+                            <span class="w-9 text-center text-sm font-bold text-ink tier-count" data-tier-count>0</span>
+                            <button type="button"
+                              class="tier-counter-btn tier-inc-btn flex size-9 items-center justify-center text-ink transition-colors hover:bg-sunken disabled:opacity-30 disabled:pointer-events-none"
+                              aria-label="Increase 04-07 passengers">
+                              <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+
+                        <!-- Tier 3: 08-11 passengers (1 van + 1 car) -->
+                        <div class="flex items-center justify-between py-3.5 tier-row" data-tier-id="van-car"
+                          data-ratio="2.633" data-label="08-11 passengers (1 van + 1 car)">
+                          <div>
+                            <p class="text-sm font-semibold text-ink">08-11 passengers (1 van + 1 car)</p>
+                            <p class="text-base font-bold text-ink mt-0.5 tier-price-label">€2,080</p>
+                          </div>
+                          <div
+                            class="flex items-center rounded-lg border border-line bg-surface overflow-hidden shadow-xs">
+                            <button type="button"
+                              class="tier-counter-btn tier-dec-btn flex size-9 items-center justify-center text-ink transition-colors hover:bg-sunken disabled:opacity-30 disabled:pointer-events-none"
+                              aria-label="Decrease 08-11 passengers">
+                              <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </button>
+                            <span class="w-9 text-center text-sm font-bold text-ink tier-count" data-tier-count>0</span>
+                            <button type="button"
+                              class="tier-counter-btn tier-inc-btn flex size-9 items-center justify-center text-ink transition-colors hover:bg-sunken disabled:opacity-30 disabled:pointer-events-none"
+                              aria-label="Increase 08-11 passengers">
+                              <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+
+                        <!-- Tier 4: 12-14 passengers (2 vans) -->
+                        <div class="flex items-center justify-between py-3.5 tier-row" data-tier-id="vans-2"
+                          data-ratio="3.266" data-label="12-14 passengers (2 vans)">
+                          <div>
+                            <p class="text-sm font-semibold text-ink">12-14 passengers (2 vans)</p>
+                            <p class="text-base font-bold text-ink mt-0.5 tier-price-label">€2,580</p>
+                          </div>
+                          <div
+                            class="flex items-center rounded-lg border border-line bg-surface overflow-hidden shadow-xs">
+                            <button type="button"
+                              class="tier-counter-btn tier-dec-btn flex size-9 items-center justify-center text-ink transition-colors hover:bg-sunken disabled:opacity-30 disabled:pointer-events-none"
+                              aria-label="Decrease 12-14 passengers">
+                              <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </button>
+                            <span class="w-9 text-center text-sm font-bold text-ink tier-count" data-tier-count>0</span>
+                            <button type="button"
+                              class="tier-counter-btn tier-inc-btn flex size-9 items-center justify-center text-ink transition-colors hover:bg-sunken disabled:opacity-30 disabled:pointer-events-none"
+                              aria-label="Increase 12-14 passengers">
+                              <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <!-- Bottom Apply Bar (Exact match to screenshot with black button) -->
+                      <div class="mt-2 pt-3 border-t border-line flex items-center justify-between">
+                        <div>
+                          <p class="text-xs text-faint">Estimated Fare</p>
+                          <p id="passengers-popover-total" class="text-lg font-extrabold text-ink">€790</p>
+                        </div>
+                        <button type="button" id="passengers-popover-apply"
+                          class="rounded-lg bg-black px-6 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 active:scale-95 shadow-sm">
+                          Apply
+                        </button>
+                      </div>
+
+                    </div>
                   </div>
 
                   <!-- Date and time are typed into a plain text field that
@@ -1324,8 +1716,218 @@
     </div>
   </div>
 
+  <!-- ===================================================================
+         Booking Receipt / Summary Note Modal (Pre-WhatsApp Confirmation)
+    ==================================================================== -->
+  <div id="booking-receipt-modal" hidden role="dialog" aria-modal="true" aria-labelledby="receipt-modal-title"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm transition-all duration-200">
+    <div id="booking-receipt-backdrop" class="fixed inset-0 bg-transparent" aria-hidden="true"></div>
+    <div
+      class="relative z-10 w-full max-w-xl rounded-2xl bg-white text-ink shadow-2xl border border-line overflow-hidden my-auto"
+      id="booking-receipt-container">
+
+      <!-- Receipt Header Banner -->
+      <div class="bg-surface px-6 py-5 border-b border-line flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="size-10 rounded-full bg-accent/20 flex items-center justify-center text-accent-deep shrink-0">
+            <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h3 id="receipt-modal-title" class="font-display font-bold text-lg text-ink">Booking Details &amp; Summary
+              Note</h3>
+            <p class="text-xs text-muted">Review your itinerary before sending to WhatsApp</p>
+          </div>
+        </div>
+        <button type="button" id="booking-receipt-close"
+          class="size-8 rounded-full border border-line flex items-center justify-center text-muted hover:text-ink hover:bg-sunken transition-colors shrink-0"
+          aria-label="Close booking preview">
+          <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Printable Voucher Body -->
+      <div class="p-6 sm:p-8 space-y-5 max-h-[72vh] overflow-y-auto custom-popup-scroll" id="booking-receipt-content">
+
+        <!-- Voucher Top Meta: Reference and Date -->
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-dashed border-line pb-4">
+          <div>
+            <span class="text-xs uppercase font-semibold tracking-wider text-muted">Booking Reference</span>
+            <p id="receipt-ref" class="text-base font-bold font-mono text-accent-deep mt-0.5">RW-83921</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs uppercase font-semibold tracking-wider text-muted">Date of Request</span>
+            <p id="receipt-issued" class="text-sm font-medium text-ink mt-0.5">Today</p>
+          </div>
+        </div>
+
+        <!-- 1. Customer details -->
+        <div class="rounded-xl border border-line/80 bg-sunken/40 p-4">
+          <div class="flex items-center gap-2 border-b border-line/60 pb-2 mb-3">
+            <svg class="size-4 text-accent-deep" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-accent-deep">Customer details</h4>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+            <div>
+              <span class="text-[11px] uppercase font-semibold text-muted">Full Name</span>
+              <p id="receipt-name" class="font-bold text-ink mt-0.5">John Doe</p>
+            </div>
+            <div>
+              <span class="text-[11px] uppercase font-semibold text-muted">Email</span>
+              <p id="receipt-email" class="text-xs text-ink/90 mt-0.5 truncate">john@example.com</p>
+            </div>
+            <div>
+              <span class="text-[11px] uppercase font-semibold text-muted">Phone / WhatsApp</span>
+              <p id="receipt-phone" class="text-xs text-ink/90 mt-0.5">+353 89 000 0000</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Booking details -->
+        <div class="rounded-xl border border-line/80 bg-sunken/40 p-4">
+          <div class="flex items-center gap-2 border-b border-line/60 pb-2 mb-3">
+            <svg class="size-4 text-accent-deep" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-accent-deep">Booking details</h4>
+          </div>
+
+          <div class="space-y-3 text-sm">
+            <div>
+              <span class="text-[11px] uppercase font-semibold text-muted">Service / Tour</span>
+              <p id="receipt-service" class="font-bold text-ink mt-0.5">Dublin • Private Tour: Cliffs of Moher &amp;
+                Galway.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-line/50">
+              <div>
+                <span class="text-[11px] uppercase font-semibold text-muted">Date &amp; Time</span>
+                <p id="receipt-when" class="font-medium text-ink mt-0.5">Saturday, 22 August 2026 at 08:30</p>
+              </div>
+              <div>
+                <span class="text-[11px] uppercase font-semibold text-muted">Vehicles &amp; Passengers</span>
+                <p id="receipt-passengers" class="font-medium text-ink mt-0.5">1 × 01–04 passengers (1 car)</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-line/50">
+              <div>
+                <span class="text-[11px] uppercase font-semibold text-muted">Pickup Address</span>
+                <p id="receipt-pickup" class="font-medium text-ink mt-0.5">The Shelbourne Hotel, Dublin</p>
+              </div>
+              <div>
+                <span class="text-[11px] uppercase font-semibold text-muted">Drop-off Address</span>
+                <p id="receipt-dropoff" class="font-medium text-ink mt-0.5">Cliffs of Moher Visitor Centre</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 border-t border-line/50 text-xs">
+              <div>
+                <span class="text-[10px] uppercase font-semibold text-muted">Flight Number</span>
+                <p id="receipt-flight" class="text-ink mt-0.5">None</p>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase font-semibold text-muted">Large Bags</span>
+                <p id="receipt-bags" class="text-ink mt-0.5">Standard</p>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase font-semibold text-muted">Special Notes</span>
+                <p id="receipt-notes" class="text-ink mt-0.5 italic truncate">None</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Payment details -->
+        <div class="rounded-xl border border-line bg-surface p-4 sm:p-5">
+          <div class="flex items-center gap-2 border-b border-line/60 pb-2 mb-3">
+            <svg class="size-4 text-accent-deep" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+              <line x1="1" y1="10" x2="23" y2="10"></line>
+            </svg>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-accent-deep">Payment details</h4>
+          </div>
+
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center justify-between font-semibold text-ink">
+              <span>Subtotal:</span>
+              <span id="receipt-subtotal" class="font-mono">€2,080</span>
+            </div>
+
+            <!-- Itemized breakdown requested by user -->
+            <div id="receipt-items-list"
+              class="space-y-1.5 border-y border-line/70 py-2.5 font-mono text-xs text-ink/80">
+              <!-- Dynamically populated items like:
+                   1 x €790 01-04 passengers (1 car)
+                   1 x €1,290 05-07 passengers (1 van)
+              -->
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <div>
+                <span class="text-base font-extrabold text-ink">Total:</span>
+                <p class="text-[11px] text-muted">All-inclusive: chauffeur, fuel, road tolls &amp; taxes</p>
+              </div>
+              <span id="receipt-total" class="text-2xl font-extrabold text-accent-deep font-display">€2,080</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Footer -->
+      <div
+        class="bg-surface px-6 py-4 border-t border-line flex flex-wrap items-center justify-between gap-3 receipt-actions">
+        <div class="flex items-center gap-2">
+          <button type="button" id="receipt-print-btn"
+            class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2 text-xs font-semibold text-ink shadow-xs transition-colors hover:bg-sunken">
+            <svg class="size-4 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            Print / Save Receipt
+          </button>
+          <button type="button" id="receipt-edit-btn"
+            class="rounded-full px-3 py-2 text-xs font-semibold text-muted hover:text-ink transition-colors">
+            Edit Details
+          </button>
+        </div>
+
+        <button type="button" id="receipt-confirm-whatsapp-btn"
+          class="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-accent-ink shadow transition-colors hover:bg-accent-hi hover:text-white">
+          <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2.2"
+            aria-hidden="true">
+            <path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3.5 20.5l1.6-5.1A8.4 8.4 0 1 1 21 11.5Z" />
+          </svg>
+          Confirm &amp; Send to WhatsApp
+        </button>
+      </div>
+
+    </div>
+  </div>
+
   <script src="assets/vendor/glightbox/glightbox.min.js" defer></script>
-  <script src="src/main.js?v=2" defer></script>
+  <script src="src/main.js?v=5" defer></script>
 </body>
 
 </html>
